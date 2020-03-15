@@ -1,10 +1,10 @@
-package simModel;
+package smPizzaModel;
 
 class Output 
 {
-	ModelName model;
+	SMPizza model;
 	
-	protected Output(ModelName md) { model = md; }
+	protected Output(SMPizza md) { model = md; }
     // Use OutputSequence class to define Trajectory and Sample Sequences
     // Trajectory Sequences
 

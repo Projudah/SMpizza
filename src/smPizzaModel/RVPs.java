@@ -1,11 +1,11 @@
-package simModel;
+package smPizzaModel;
 
 import cern.jet.random.Exponential;
 import cern.jet.random.engine.MersenneTwister;
 
 class RVPs 
 {
-	ModelName model; // for accessing the clock
+	SMPizza model; // for accessing the clock
     // Data Models - i.e. random veriate generators for distributions
 	// are created using Colt classes, define 
 	// reference variables here and create the objects in the
@@ -13,7 +13,7 @@ class RVPs
 
 
 	// Constructor
-	protected RVPs(ModelName model, Seeds sd) 
+	protected RVPs(SMPizza model, Seeds sd) 
 	{ 
 		this.model = model; 
 		// Set up distribution functions

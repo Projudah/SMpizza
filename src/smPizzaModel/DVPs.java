@@ -1,11 +1,11 @@
-package simModel;
+package smPizzaModel;
 
 class DVPs 
 {
-	ModelName model;  // for accessing the clock
+	SMPizza model;  // for accessing the clock
 	
 	// Constructor
-	protected DVPs(ModelName model) { this.model = model; }
+	protected DVPs(SMPizza model) { this.model = model; }
 
 	// Translate deterministic value procedures into methods
         /* -------------------------------------------------

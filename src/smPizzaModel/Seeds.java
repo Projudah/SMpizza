@@ -1,4 +1,4 @@
-package simModel;
+package smPizzaModel;
 
 import cern.jet.random.engine.RandomSeedGenerator;
 
