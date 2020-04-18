@@ -8,18 +8,53 @@ import simulationModelling.SequelActivity;
 // The Simulation model Class
 public class SMPizza extends AOSimulationModel
 {
-	// Constants available from Constants class
-	/* Parameter */
-        // Define the parameters
-
-	/*-------------Entity Data Structures-------------------*/
-	/* Group and Queue Entities */
-	// Define the reference variables to the various 
-	// entities with scope Set and Unary
-	// Objects can be created here or in the Initialise Action
 
 	/* Input Variables */
-	// Define any Independent Input Varaibles here
+	// Define any Independent Input Variables here
+	
+	  // Make Table object
+	  protected MakeTable rqMakeTable = new MakeTable();
+	  
+	  // Oven loading zone
+	  protected LoadArea rgLoadArea = new LoadArea();
+	  
+	  // Oven unload zone
+	  protected UnloadArea qUnloadArea = new UnloadArea();
+	  
+	  //Slide
+	  protected Slide qSlide = new Slide();
+	  
+	  //Delivery Area
+	  protected DeliveryArea qDeliveryArea = new DeliveryArea();
+	  
+	  // No orders to read initially
+	  protected Orders qOrders = new Orders();
+	  
+	  //No calls
+	  protected Techphone qTechphone = new Techphone();
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	
 	// References to RVP and DVP objects
 	protected RVPs rvp;  // Reference to rvp object - object created in constructor
