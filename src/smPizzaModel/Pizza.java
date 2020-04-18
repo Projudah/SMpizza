@@ -15,5 +15,5 @@ public class Pizza {
         public int getValue() { return value; }
 	}
 	protected Size size;
-	protected Order associatedOrder;
+	protected Orders associatedOrder;
 }
