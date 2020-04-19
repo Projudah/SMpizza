@@ -15,4 +15,6 @@ class Output
     // Sequences - add them here
 
     // SSOVs
+	protected int numOrders;
+	protected int numOrdersSatisfied;
 }
