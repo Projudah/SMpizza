@@ -9,12 +9,12 @@ public class Techphone {
 	protected int n;
 	protected ArrayList<Pizza> list;
 	
-	protected Queue<Orders> orders;
+	protected Queue<Order> order;
 	
-	protected void addOrder(Orders order) {
+	protected void addOrder(Order order) {
 		
 	}
-	protected Orders getOrder() {
-		return orders.poll();
+	protected Order getOrder() {
+		return order.poll();
 	}
 }

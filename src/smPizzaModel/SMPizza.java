@@ -28,7 +28,7 @@ public class SMPizza extends AOSimulationModel
 	  protected DeliveryArea qDeliveryArea = new DeliveryArea();
 	  
 	  // No orders to read initially
-	  protected Orders qOrders = new Orders();
+	  protected Order qOrders = new Order();
 	  
 	  //No calls
 	  protected Techphone qTechphone = new Techphone();
