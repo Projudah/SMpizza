@@ -40,11 +40,10 @@ class UDPs
 		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
 			return false;
 		}
-		if(model.qTechphone.isEmpty()){
+		if(model.qTechphone.isEmpty()) {
 			return false;
 		}
 		return true;
-
 	}
 	
 }

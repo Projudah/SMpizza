@@ -20,6 +20,7 @@ public class FinalIngre extends ConditionalActivity {
 
     @Override
     public void startingEvent() {
+        iCPizza = model.rqMakeTable.position[MakeTable.POS5];
         model.rqMakeTable.position[MakeTable.POS5] = model.rqMakeTable.position[MakeTable.POS4];
         model.rqMakeTable.position[MakeTable.POS4] = null;
         model.rqMakeTable.numBusy++;
@@ -27,13 +28,12 @@ public class FinalIngre extends ConditionalActivity {
 
     @Override
     protected double duration() {
-        return 0; // TODO: needs RVP to be implemented to complete this
+        return model.rvp.uFinalIngrTime(iCPizza.size);
     }
 
     @Override
     protected void terminatingEvent() {
         // TODO: Needs to check for correctness
-        iCPizza = model.rqMakeTable.position[MakeTable.POS5];
         model.qSlide.spInsertQue(iCPizza);
         model.rqMakeTable.position[MakeTable.POS5] = null;
         model.rqMakeTable.numBusy--;
