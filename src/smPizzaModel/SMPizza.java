@@ -35,35 +35,11 @@ public class SMPizza extends AOSimulationModel
 	  //No calls
 	//   protected Techphone qTechphone = new Techphone();
 	  protected ArrayList<Order> qTechphone = new ArrayList<Order>();
-
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
 	
 	// References to RVP and DVP objects
 	protected RVPs rvp;  // Reference to rvp object - object created in constructor
 	protected DVPs dvp = new DVPs(this);  // Reference to dvp object
-	protected UDPs udp = new UDPs(this);
+	protected UDPs udp = new UDPs();
 
 	// Output object
 	protected Output output = new Output(this);
@@ -73,12 +49,12 @@ public class SMPizza extends AOSimulationModel
 
 
 	// Constructor
-	public SMPizza(double t0time, double tftime, /*define other args,*/ Seeds sd)
+	public SMPizza(double t0time, double tftime, Seeds sd)
 	{
 		// Initialise parameters here
 		
 		// Create RVP object with given seed
-		rvp = new RVPs(this,sd);
+		rvp = new RVPs(sd);
 		
 		// rgCounter and qCustLine objects created in Initalise Action
 		
@@ -86,7 +62,7 @@ public class SMPizza extends AOSimulationModel
 		initAOSimulModel(t0time,tftime);   
 
 		     // Schedule the first arrivals and employee scheduling
-		Initialise init = new Initialise(this);
+		Initialise init = new Initialise();
 		scheduleAction(init);  // Should always be first one scheduled.
 		// Schedule other scheduled actions and acitvities here
 	}
