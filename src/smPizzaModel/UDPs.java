@@ -2,7 +2,7 @@ package smPizzaModel;
 
 class UDPs 
 {
-	SMPizza model;  // for accessing the clock
+	static SMPizza model;  // for accessing the clock
 	
 	// Constructor
 	protected UDPs(SMPizza model) { this.model = model; }

@@ -1,5 +1,7 @@
 package smPizzaModel;
 
+import java.util.ArrayList;
+
 import simulationModelling.AOSimulationModel;
 import simulationModelling.Behaviour;
 import simulationModelling.SequelActivity;
@@ -31,7 +33,9 @@ public class SMPizza extends AOSimulationModel
 	  protected Order qOrders = new Order();
 	  
 	  //No calls
-	  protected Techphone qTechphone = new Techphone();
+	//   protected Techphone qTechphone = new Techphone();
+	  protected ArrayList<Order> qTechphone = new ArrayList<Order>();
+
 	  
 	  
 	  
