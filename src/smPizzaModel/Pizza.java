@@ -16,4 +16,8 @@ public class Pizza {
 	}
 	protected Size size;
 	protected Order associatedOrder;
+	public void spleave() {
+		// TODO Auto-generated method stub
+		
+	}
 }

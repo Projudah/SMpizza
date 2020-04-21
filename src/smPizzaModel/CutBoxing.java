@@ -1,14 +1,14 @@
 package smPizzaModel;
 
 import simulationModelling.ConditionalActivity;
-import smPizzaModel.Orders.Type;
+import smPizzaModel.Order.Type;
 
 public class CutBoxing extends ConditionalActivity{
 
 	static SMPizza model;
 	Baking baking;
 	Pizza pizza;
-	Orders order;
+	Order order;
 	
 	public static boolean precondition(SMPizza model)
 	{
@@ -30,7 +30,7 @@ public class CutBoxing extends ConditionalActivity{
 	
 	public double duration()
 	{
-		return RVP.BoxCuttingTime();
+		return model.rvp.BoxCuttingTime();
 	}
 	
 	public void terminatingEvent()
@@ -40,7 +40,7 @@ public class CutBoxing extends ConditionalActivity{
 		if(this.order.uNumPizzasCompleted == this.order.uNumPizzas)
 		{
 			
-			if(this.order.uType == Type.D)
+			if(this.order.uType == Type.DELIVERY)
 			{
 				model.qDeliveryArea.spInsertQue(this.order);
 				model.qDeliveryArea.n++;

@@ -46,5 +46,15 @@ class UDPs
 		return true;
 
 	}
+
+	public static boolean CanLoadPizza() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static Pizza GetNextPizza() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
