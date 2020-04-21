@@ -69,5 +69,26 @@ class UDPs
 		return true;
 
 	}
+
+	protected boolean CanLoadPizza(){
+		double freeSpace = model.rgLoadArea.totalSpace - model.rgLoadArea.usedSpace;
+		for(Pizza pizza : model.qSlide){
+			if(pizza.size.getValue() <= freeSpace){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	protected Pizza GetNextPizza(){
+		double freeSpace = model.rgLoadArea.totalSpace - model.rgLoadArea.usedSpace;
+		for(Pizza pizza : model.qSlide){
+			if(pizza.size.getValue() <= freeSpace){
+				model.qSlide.remove(pizza);
+				return pizza;
+			}
+		}
+		return null;
+	}
 	
 }

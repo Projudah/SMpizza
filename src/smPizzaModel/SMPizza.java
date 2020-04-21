@@ -24,7 +24,7 @@ public class SMPizza extends AOSimulationModel
 	  protected UnloadArea qUnloadArea = new UnloadArea();
 	  
 	  //Slide
-	  protected Slide qSlide = new Slide();
+	  protected ArrayList<Pizza> qSlide = new ArrayList<Pizza>();
 	  
 	  //Delivery Area
 	  protected DeliveryArea qDeliveryArea = new DeliveryArea();
