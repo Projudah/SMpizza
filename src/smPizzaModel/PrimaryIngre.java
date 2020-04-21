@@ -7,8 +7,7 @@ public class PrimaryIngre extends ConditionalActivity {
     static SMPizza model;
     Pizza iCPizza;
     protected static boolean precondition() {
-        // TODO: needs UDP to be implemented to complete this
-//        return model.udp.CanStartPrimaryIngre()
+       return model.udp.CanStartPrimaryIngre();
     }
 
     @Override

@@ -11,7 +11,7 @@ public class Loading extends ConditionalActivity{
 	public static boolean precondition(SMPizza model)
 	{
 		boolean retVal = false;
-		if(UDPs.CanLoadPizza() == true)
+		if(model.udp.CanLoadPizza() == true)
 		{
 			retVal = true;
 		}
@@ -21,7 +21,7 @@ public class Loading extends ConditionalActivity{
 	
 	public void startingEvent()
 	{
-		this.pizza = (Pizza) UDPs.GetNextPizza();
+		this.pizza = (Pizza) model.udp.GetNextPizza();
 		model.rgLoadArea.usedSpace = model.rgLoadArea.usedSpace + this.pizza.size.getValue();		
 	}
 	
