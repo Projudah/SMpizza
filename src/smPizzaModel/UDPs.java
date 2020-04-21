@@ -46,5 +46,28 @@ class UDPs
 		return true;
 
 	}
+
+	protected boolean CanStartPrimaryIngre(){
+		if(model.rqMakeTable.position[MakeTable.POS3] != null){
+			return false;
+		}
+
+		int freeExtraEmployees = (model.rqMakeTable.numPersons - model.rqMakeTable.numBusy) - 1; //all other employees minus the one 1 required to start this activity
+
+		for(int pos=MakeTable.POS4 ; pos <= MakeTable.POS5; pos++){
+			if(model.rqMakeTable.position[pos] != null && freeExtraEmployees <= 0){
+				return false;
+			}
+			freeExtraEmployees--;
+		}
+		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
+			return false;
+		}
+		if(model.rqMakeTable.position[MakeTable.POS2] == null){
+			return false;
+		}
+		return true;
+
+	}
 	
 }
