@@ -5,6 +5,7 @@ import cern.jet.random.engine.MersenneTwister;
 import cern.jet.random.Empirical;
 import cern.jet.random.EmpiricalWalker;
 import cern.jet.random.Uniform;
+import cern.jet.random.Normal;
 import smPizzaModel.Order.Type;
 import smPizzaModel.Pizza.Size;
 
@@ -19,10 +20,25 @@ class RVPs
 	final static double PERSML = 0.12;
 	final static double PERMED = 0.56;
 	final static double PERLRG = 0.32;
+
+	final static double PERCAR = 0.6;
+	final static double PERDEL = 0.4;
+
+	final static double PER1 = 0.64;
+	final static double PER2 = 0.31;
+	final static double PER3 = 0.5;
+
+
+	final static double BOXMEAN = 3.41;
+	final static double BOXSDEV = 1.07;
+
 	private final double [] sizePdf = { PERSML, PERMED, PERLRG }; // for creating discrete PDF
-	private final double [] orderSizePdf = { 0.4, 0.6 }; // for creating discrete PDF
-	private final EmpiricalWalker pizzaSizeDM, orderTypeDM;
+	private final double [] orderSizePdf = { PERDEL, PERCAR }; // for creating discrete PDF
+	private final double [] pizzaNumPdf = { PER1, PER2, PER3 }; // for creating discrete PDF
+
+	private final EmpiricalWalker pizzaSizeDM, orderTypeDM, pizzaNumDM;
 	private final Uniform triangularDist;
+	private final Normal boxingDist;
 
 	/* Random Variate Procedure for Arrivals */
 	private final Exponential interArrDist;  // Exponential distribution for interarrival times
@@ -32,11 +48,14 @@ class RVPs
 	// Constructor
 	protected RVPs(final Seeds sd) 
 	{ 
-		// Set up distribution functions
+	// Set up distribution functions
 		interArrDist = new Exponential(1.0/WMEAN1, new MersenneTwister(sd.arr));
 		pizzaSizeDM = new EmpiricalWalker(sizePdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.sp));
-		orderTypeDM = new EmpiricalWalker(sizePdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.sp));
+		orderTypeDM = new EmpiricalWalker(orderSizePdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.ot));
+		pizzaNumDM = new EmpiricalWalker(pizzaNumPdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.np));
+
 		triangularDist = new Uniform(new MersenneTwister(sd.tri));
+		boxingDist = new Normal(BOXMEAN, BOXSDEV, new MersenneTwister(sd.cb));
 	}
 	
 	protected double duInput()  // for getting next value of duInput
@@ -47,6 +66,10 @@ class RVPs
 	    // Note that interarrival time is added to current
 	    // clock value to get the next arrival time.
 	    return(nxtInterArr+model.getClock());
+	}
+
+	protected double BoxCuttingTime(){
+		return boxingDist.nextDouble();
 	}
 
 	protected Size SizeOfPizza()
@@ -78,7 +101,17 @@ class RVPs
 		return(type);
 	}
 
-	protected double uDoughSaucingTime(final Size size){
+	protected double uDeliveryTime(){
+		return triangularDistribution(3, 5, 12);
+	}
+
+	protected int NumberOfPizzas()
+	{
+		int num = pizzaNumDM.nextInt() + 1;	
+		return(num);
+	}
+
+	protected double uDoughSaucingTime(Size size){
 		double Tm = 0;
 		if(size == Size.LARGE){
 			Tm = triangularDistribution(0.5, 0.7, 0.8);
@@ -92,7 +125,7 @@ class RVPs
 		return(Tm);
 	}
 
-	protected double uPrimaryIngrTime(final Size size){
+	protected double uPrimaryIngrTime(Size size){
 		double Tm = 0;
 		if(size == Size.LARGE){
 			Tm = triangularDistribution(0.6, 0.8, 1);
@@ -106,7 +139,7 @@ class RVPs
 		return(Tm);
 	}
 
-	protected double uFinalIngrTime(final Size size){
+	protected double uFinalIngrTime(Size size){
 		double Tm = 0;
 		if(size == Size.LARGE){
 			Tm = triangularDistribution(0.5, 0.6, 0.7);
