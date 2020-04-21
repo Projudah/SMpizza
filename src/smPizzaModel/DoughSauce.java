@@ -5,6 +5,7 @@ import simulationModelling.ConditionalActivity;
 public class DoughSauce extends ConditionalActivity 
 {
 	static SMPizza model;
+	Pizza iCPizza;
 	
 	protected static boolean precondition()
 	{
@@ -14,9 +15,9 @@ public class DoughSauce extends ConditionalActivity
 	public void startingEvent() 
 	{
 		Order iCOrder = model.qTechphone.get(0);
-        Pizza iCPizza = new Pizza();
+        iCPizza = new Pizza();
         iCPizza.associatedOrder = iCOrder;
-        iCPizza.size = model.rvp.SizeOfPizza();
+		iCPizza.size = model.rvp.SizeOfPizza();
         model.rqMakeTable.numBusy++;
         iCOrder.uNumPizzasStarted++;
 
@@ -28,13 +29,12 @@ public class DoughSauce extends ConditionalActivity
 
 	protected double duration() 
 	{
-		double dur = model.rvp.uTimeRepairGreenPart();
-		return dur;
+		return model.rvp.uDoughSaucingTime(iCPizza.size);
 	}
 
 	protected void terminatingEvent() 
 	{
-		model.rRepairTech.busy = true;
+		model.rqMakeTable.numBusy--;
 	}
 
 }
