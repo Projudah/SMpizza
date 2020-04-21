@@ -2,10 +2,10 @@ package smPizzaModel;
 
 class UDPs 
 {
-	static SMPizza model;  // for accessing the clock
+	SMPizza model;  // for accessing the clock
 	
 	// Constructor
-	protected UDPs() {}
+	protected UDPs(SMPizza model) { this.model = model; }
 
 	// Translate User Defined Procedures into methods
     /*-------------------------------------------------
@@ -24,27 +24,6 @@ class UDPs
         	return -1;
         }
 	------------------------------------------------------------*/
-	protected boolean CanStartDoughSaucing(){
-		if(model.rqMakeTable.position[MakeTable.POS1] != null){
-			return false;
-		}
-
-		int freeExtraEmployees = (model.rqMakeTable.numPersons - model.rqMakeTable.numBusy) - 1; //all other employees minus the one 1 required to start this activity
-
-		for(int pos=MakeTable.POS2 ; pos <= MakeTable.POS5; pos++){
-			if(model.rqMakeTable.position[pos] != null && freeExtraEmployees <= 0){
-				return false;
-			}
-			freeExtraEmployees--;
-		}
-		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
-			return false;
-		}
-		if(model.qTechphone.isEmpty()){
-			return false;
-		}
-		return true;
-
-	}
+	
 	
 }

@@ -1,7 +1,5 @@
 package smPizzaModel;
 
-import java.util.ArrayList;
-
 import simulationModelling.AOSimulationModel;
 import simulationModelling.Behaviour;
 import simulationModelling.SequelActivity;
@@ -30,16 +28,38 @@ public class SMPizza extends AOSimulationModel
 	  protected DeliveryArea qDeliveryArea = new DeliveryArea();
 	  
 	  // No orders to read initially
-	  protected Order qOrders = new Order();
+	  protected Orders qOrders = new Orders();
 	  
 	  //No calls
-	//   protected Techphone qTechphone = new Techphone();
-	  protected ArrayList<Order> qTechphone = new ArrayList<Order>();
+	  protected Techphone qTechphone = new Techphone();
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	
 	// References to RVP and DVP objects
 	protected RVPs rvp;  // Reference to rvp object - object created in constructor
 	protected DVPs dvp = new DVPs(this);  // Reference to dvp object
-	protected UDPs udp = new UDPs();
+	protected UDPs udp = new UDPs(this);
 
 	// Output object
 	protected Output output = new Output(this);
@@ -49,12 +69,12 @@ public class SMPizza extends AOSimulationModel
 
 
 	// Constructor
-	public SMPizza(double t0time, double tftime, Seeds sd)
+	public SMPizza(double t0time, double tftime, /*define other args,*/ Seeds sd)
 	{
 		// Initialise parameters here
 		
 		// Create RVP object with given seed
-		rvp = new RVPs(sd);
+		rvp = new RVPs(this,sd);
 		
 		// rgCounter and qCustLine objects created in Initalise Action
 		
@@ -62,7 +82,7 @@ public class SMPizza extends AOSimulationModel
 		initAOSimulModel(t0time,tftime);   
 
 		     // Schedule the first arrivals and employee scheduling
-		Initialise init = new Initialise();
+		Initialise init = new Initialise(this);
 		scheduleAction(init);  // Should always be first one scheduled.
 		// Schedule other scheduled actions and acitvities here
 	}

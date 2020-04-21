@@ -2,31 +2,18 @@ package smPizzaModel;
 
 import cern.jet.random.engine.RandomSeedGenerator;
 
-public class Seeds {
-	// Order arrivals seed
-	int arr;
+public class Seeds 
+{
+	int seed1;   // comment 1
+	int seed2;   // comment 2
+	int seed3;   // comment 3
+	int seed4;   // comment 4
 
-	// Cutting and Boxing seed type
-	int cb;
-
-	// Type of order seed
-	int ot;
-
-	// Number of pizzas per order seed
-	int np;
-
-	// Size of pizza seed
-	int sp;
-
-	// Triangular distribution seed
-	int tri;
-
-	public Seeds(RandomSeedGenerator rsg) {
-		arr =rsg.nextSeed();
-		cb  =rsg.nextSeed();
-		ot  =rsg.nextSeed();
-		np  =rsg.nextSeed();
-		sp  = rsg.nextSeed();
-		tri = rsg.nextSeed();
+	public Seeds(RandomSeedGenerator rsg)
+	{
+		seed1=rsg.nextSeed();
+		seed2=rsg.nextSeed();
+		seed3=rsg.nextSeed();
+		seed4=rsg.nextSeed();
 	}
 }

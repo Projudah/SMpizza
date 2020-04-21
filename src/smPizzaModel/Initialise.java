@@ -14,7 +14,7 @@ class Initialise extends ScheduledAction{
 	
 	
 	// Constructor
-	// public Initialise(SMPizza model) { this.model = model; }
+	public Initialise(SMPizza model) { this.model = model; }
 
 	@Override
 	public double timeSequence() {
@@ -41,7 +41,7 @@ class Initialise extends ScheduledAction{
 	    model.qDeliveryArea.n = 0;
 	    
 	    //no calls
-	    // model.qTechphone.n = 0;
+	    model.qTechphone.n = 0;
 
 	    model.output.numOrders = 0;
 	    model.output.numOrdersSatisfied = 0;
