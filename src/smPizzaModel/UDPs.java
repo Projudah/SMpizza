@@ -40,11 +40,20 @@ class UDPs
 		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
 			return false;
 		}
-		if(model.qTechphone.isEmpty()){
+		if(model.qTechphone.isEmpty()) {
 			return false;
 		}
 		return true;
+	}
 
+	public static boolean CanLoadPizza() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static Pizza GetNextPizza() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	protected boolean CanStartPrimaryIngre(){

@@ -6,4 +6,8 @@ public class DeliveryArea {
 
 	protected int n;
 	protected ArrayList<Pizza> list;
+	public void spInsertQue(Order order) {
+		// TODO Auto-generated method stub
+		
+	}
 }

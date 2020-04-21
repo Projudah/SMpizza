@@ -26,6 +26,9 @@ public class SMPizza extends AOSimulationModel
 	  //Slide
 	  protected ArrayList<Pizza> qSlide = new ArrayList<Pizza>();
 	  
+	  // Boxing and cutting area
+	  protected CutBoxEmp rCutBoxEmp = new CutBoxEmp();
+	  
 	  //Delivery Area
 	  protected DeliveryArea qDeliveryArea = new DeliveryArea();
 	  
