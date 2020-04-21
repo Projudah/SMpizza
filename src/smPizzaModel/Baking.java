@@ -22,7 +22,7 @@ public class Baking extends SequelActivity {
 	
 	public void terminatingEvent()
 	{
-		model.qUnloadArea.spInsertQue(this.pizza);
+		model.qUnloadArea.add(this.pizza);
 
 	}
 	

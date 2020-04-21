@@ -8,8 +8,4 @@ public class Order {
 	protected int uNumPizzasCompleted;
 	public int uNumPizzas;
 	public double startTime;
-	public void spleave() {
-		// TODO Auto-generated method stub
-		
-	}
 }
