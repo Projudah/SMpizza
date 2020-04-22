@@ -38,7 +38,7 @@ class Initialise extends ScheduledAction{
 
 	    model.output.numOrders = 0;
 		model.output.numOrdersSatisfied = 0;
-		model.output.totalCost = model.dvp.GetTotalCost();
+		model.output.totalCost = model.dvp.GetTotalCost(model.rgLoadArea.size, model.rqMakeTable.numPersons, model.rgDeliveryDrivers.totalNumber);
 
 		model.rgDeliveryDrivers.numBusy = 0;
 		

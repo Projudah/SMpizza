@@ -16,5 +16,6 @@ class Output
     // SSOVs
 	protected int numOrders;
 	protected int numOrdersSatisfied;
-	protected double propOrdersSatisfied;
+    protected double propOrdersSatisfied;
+    protected double totalCost;
 }
