@@ -1,5 +1,7 @@
 package smPizzaModel;
 
+import java.util.Arrays;
+
 import simulationModelling.ConditionalActivity;
 
 public class PrimaryIngre extends ConditionalActivity {
@@ -15,6 +17,10 @@ public class PrimaryIngre extends ConditionalActivity {
         iCPizza = new Pizza();
         iCPizza = model.rqMakeTable.position[MakeTable.POS2];
         model.rqMakeTable.numBusy++;
+        System.out.println();
+        model.rqMakeTable.position[MakeTable.POS3] = model.rqMakeTable.position[MakeTable.POS2];
+        model.rqMakeTable.position[MakeTable.POS2] = null;
+        model.rqMakeTable.positionBusy[MakeTable.POS3] = true;
     }
 
     @Override
@@ -24,11 +30,7 @@ public class PrimaryIngre extends ConditionalActivity {
 
     @Override
     protected void terminatingEvent() {
-        model.rqMakeTable.position[MakeTable.POS3] = model.rqMakeTable.position[MakeTable.POS2];
-        model.rqMakeTable.position[MakeTable.POS2] = null;
-
-        model.rqMakeTable.position[MakeTable.POS4] = model.rqMakeTable.position[MakeTable.POS3];
-        model.rqMakeTable.position[MakeTable.POS3] = null;
+        model.rqMakeTable.positionBusy[MakeTable.POS3] = false;
         model.rqMakeTable.numBusy--;
     }
 }

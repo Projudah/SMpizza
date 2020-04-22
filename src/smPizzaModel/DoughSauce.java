@@ -1,5 +1,7 @@
 package smPizzaModel;
 
+import java.util.Arrays;
+
 import simulationModelling.ConditionalActivity;
 
 public class DoughSauce extends ConditionalActivity 
@@ -23,7 +25,9 @@ public class DoughSauce extends ConditionalActivity
 		// System.out.println(Integer.toString(iCOrder.uNumPizzasStarted) +"/"+ Integer.toString(iCOrder.uNumPizzas));
         if(iCOrder.uNumPizzasStarted >=iCOrder.uNumPizzas){
             model.qTechphone.remove(0);
-        }
+		}
+		model.rqMakeTable.position[MakeTable.POS1] = iCPizza;
+		model.rqMakeTable.positionBusy[MakeTable.POS1] = true;
 	}
 
 	protected double duration() 
@@ -33,7 +37,7 @@ public class DoughSauce extends ConditionalActivity
 
 	protected void terminatingEvent() 
 	{
-		model.rqMakeTable.position[MakeTable.POS1] = iCPizza;
+		model.rqMakeTable.positionBusy[MakeTable.POS1] = false;
 		model.rqMakeTable.numBusy--;
 	}
 

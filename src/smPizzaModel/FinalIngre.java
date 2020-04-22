@@ -1,5 +1,7 @@
 package smPizzaModel;
 
+import java.util.Arrays;
+
 import simulationModelling.ConditionalActivity;
 
 public class FinalIngre extends ConditionalActivity {
@@ -8,14 +10,7 @@ public class FinalIngre extends ConditionalActivity {
     Pizza iCPizza;
     protected static boolean precondition()
     {
-       boolean retVal = false;
-       if ((model.rqMakeTable.numBusy <= model.rqMakeTable.numPersons) &&
-               (model.rqMakeTable.position[MakeTable.POS5] == null) &&
-               (model.rqMakeTable.position[MakeTable.POS4] != null)){
-           retVal = true;
-       }
-
-       return retVal;
+       return model.udp.CanStartFinalIngre();
     }
 
     @Override
@@ -24,6 +19,7 @@ public class FinalIngre extends ConditionalActivity {
         model.rqMakeTable.position[MakeTable.POS5] = model.rqMakeTable.position[MakeTable.POS4];
         model.rqMakeTable.position[MakeTable.POS4] = null;
         model.rqMakeTable.numBusy++;
+
     }
 
     @Override
@@ -36,6 +32,5 @@ public class FinalIngre extends ConditionalActivity {
         model.qSlide.add(iCPizza);
         model.rqMakeTable.position[MakeTable.POS5] = null;
         model.rqMakeTable.numBusy--;
-
     }
 }

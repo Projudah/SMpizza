@@ -44,13 +44,16 @@ class RVPs
 	private final Normal boxingDist, peakStartTime;
 
 	/* Random Variate Procedure for Arrivals */
-	private final Exponential peakinterArrDist, offpeakinterArrDist;  // Exponential distribution for interarrival times
+	private final Exponential interArrDist;  // Exponential distribution for interarrival times
 
 	double p_length, peak_start_time;
+	int tot;
+	double pMEAN;
+	double oMEAN;
 
 
 	// Constructor
-	protected RVPs(final Seeds sd) 
+	protected RVPs(Seeds sd) 
 	{ 
 	// Set up distribution functions
 		lengthOfPeak = new Uniform(MINPEAKLENGTH, MAXPEAKLENGTH, sd.arr);
@@ -64,12 +67,11 @@ class RVPs
 		p_length = lengthOfPeak.nextDouble();
 		peak_start_time = peakStartTime.nextDouble();
 
-		double pMEAN = 1/peak_per_hour;
-		double oMEAN = 1/off_peak_per_hour;
+		pMEAN = 60/peak_per_hour;
+		oMEAN = 60/off_peak_per_hour;
 
 
-		peakinterArrDist = new Exponential(pMEAN, new MersenneTwister(sd.arr));
-		offpeakinterArrDist = new Exponential(oMEAN, new MersenneTwister(sd.arr));
+		interArrDist = new Exponential(1.0/oMEAN, new MersenneTwister(sd.arr));
 
 		pizzaSizeDM = new EmpiricalWalker(sizePdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.sp));
 		orderTypeDM = new EmpiricalWalker(orderSizePdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.ot));
@@ -77,22 +79,33 @@ class RVPs
 
 		triangularDist = new Uniform(new MersenneTwister(sd.tri));
 		boxingDist = new Normal(BOXMEAN, BOXSDEV, new MersenneTwister(sd.cb));
+		tot = 0;
 	}
 	
 	protected double DuOrder()  // for getting next value of DuOrder
 	{		
-		if( peak_start_time <= model.getClock() && model.getClock() <= peak_start_time + p_length){
-			System.out.println("next"+peakinterArrDist.nextDouble());
-
-			return peakinterArrDist.nextDouble() + model.getClock();
+		double nxtArrival;
+		double mean;
+		tot++;
+		if(peak_start_time <= model.getClock() && model.getClock() <= peak_start_time + p_length){
+			mean = pMEAN;
+			// System.out.println("ITS PEAK TIME");
+		}else{
+			mean = oMEAN;
+			// System.out.println("NONO PEAK TIME");
 		}
-		System.out.println("next off"+offpeakinterArrDist.nextDouble());
 
-	    return offpeakinterArrDist.nextDouble() + model.getClock();
+		nxtArrival = model.getClock()+interArrDist.nextDouble(1.0/mean);
+		// System.out.println(tot+" NEXT ORDER IN "+ (nxtArrival - model.getClock()));
+		if(nxtArrival > model.closingTime) 
+			nxtArrival = -1.0;  // Ends time sequence
+		return(nxtArrival);
 	}
 
 	protected double BoxCuttingTime(){
-		return boxingDist.nextDouble();
+		double time = boxingDist.nextDouble();
+		System.out.println("____________________CUT AND BOX TIME "+time);
+		return time;
 	}
 
 	protected Size SizeOfPizza()

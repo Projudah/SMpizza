@@ -29,13 +29,8 @@ class UDPs
 			return false;
 		}
 
-		int freeExtraEmployees = (model.rqMakeTable.numPersons - model.rqMakeTable.numBusy) - 1; //all other employees minus the one 1 required to start this activity
-
-		for(int pos=MakeTable.POS2 ; pos <= MakeTable.POS5; pos++){
-			if(model.rqMakeTable.position[pos] != null && freeExtraEmployees <= 0){
-				return false;
-			}
-			freeExtraEmployees--;
+		if(CanStartPrimaryIngre() || CanStartFinalIngre()){
+			return false;
 		}
 		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
 			return false;
@@ -51,13 +46,9 @@ class UDPs
 			return false;
 		}
 
-		int freeExtraEmployees = (model.rqMakeTable.numPersons - model.rqMakeTable.numBusy) - 1; //all other employees minus the one 1 required to start this activity
 
-		for(int pos=MakeTable.POS4 ; pos <= MakeTable.POS5; pos++){
-			if(model.rqMakeTable.position[pos] != null && freeExtraEmployees <= 0){
-				return false;
-			}
-			freeExtraEmployees--;
+		if(CanStartFinalIngre()){
+			return false;
 		}
 		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
 			return false;
@@ -67,6 +58,12 @@ class UDPs
 		}
 		return true;
 
+	}
+
+	protected boolean CanStartFinalIngre(){
+		return ((model.rqMakeTable.numBusy <= model.rqMakeTable.numPersons) &&
+		(model.rqMakeTable.position[MakeTable.POS5] == null) &&
+		(model.rqMakeTable.position[MakeTable.POS4] != null));
 	}
 
 	protected boolean CanLoadPizza(){

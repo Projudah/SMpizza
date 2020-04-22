@@ -33,7 +33,8 @@ class Initialise extends ScheduledAction{
 					    
 		for(int i= MakeTable.POS1 ; i <= MakeTable.POS5 ; i++)
 	    {
-	    	 model.rqMakeTable.position[i] = null;
+			 model.rqMakeTable.position[i] = null;
+			 model.rqMakeTable.positionBusy[i] = false;
 	    }
 
 	    model.output.numOrders = 0;

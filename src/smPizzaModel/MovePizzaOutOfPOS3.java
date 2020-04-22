@@ -9,7 +9,8 @@ public class MovePizzaOutOfPOS3 extends ConditionalAction {
     public static boolean precondition(){
         boolean retVal = false;
         if((model.rqMakeTable.position[MakeTable.POS4] == null ) &&
-                (model.rqMakeTable.position[MakeTable.POS3] != null )){
+                (model.rqMakeTable.position[MakeTable.POS3] != null ) && 
+                (model.rqMakeTable.positionBusy[MakeTable.POS3] == false)){
             retVal = true;
         }
         return retVal;

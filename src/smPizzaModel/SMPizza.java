@@ -52,6 +52,7 @@ public class SMPizza extends AOSimulationModel
 	// Output object
 	protected Output output = new Output();
 	boolean traceFlag = false;
+	double closingTime;
 
 	
 	// Output values - define the public methods that return values
@@ -63,6 +64,7 @@ public class SMPizza extends AOSimulationModel
 	{
 		traceFlag = flg;
 		// Initialise parameters here
+		closingTime = 180;
 		initialiseClasses();
 		rqMakeTable.numPersons = numPersons;
 		rgDeliveryDrivers.totalNumber = totalDrivers;
@@ -112,7 +114,7 @@ public class SMPizza extends AOSimulationModel
 		 boolean retVal = false;
 		 //System.out.println("ClosingTime = " + closingTime + "currentTime = "
 		 //		+ getClock() + "RG.Counter.n = " + rgCounter.size());
-		 if (getClock() >= 180 && qTechphone.size() == 0 && qDeliveryArea.size() == 0 && qSlide.size() ==0 && rgLoadArea.size == 0){
+		 if (getClock() >= closingTime && !scanPreconditions() && this.sbl.size()==0){
 			retVal = true;
 		 	System.out.println("implicit stop condition returns " + retVal);
 		 }
@@ -214,16 +216,20 @@ public class SMPizza extends AOSimulationModel
 
 		// PriorityQueue<SBNotice> sbl = this.getCopySBL();
 		// kkShowSBL(sbl);
+		// if (getClock() > closingTime-10 && this.sbl.size()>0){
+		// 	closingTime+=10;
+		// 	this.setTimef(closingTime);
+		// 	System.out.println(this.getTimef());
+		//  }
 		if(traceFlag)
 		{
 			 System.out.println("Clock: "+getClock()+
 	                    ", Q.Techphone.n: "+qTechphone.size()+
 						", numOrders.n: "+output.numOrders+ ", satisf "+output.numOrdersSatisfied+ ", propnumsatisfied "+output.propOrdersSatisfied);
 			System.out.println("Make Table Positions: "+Arrays.toString(rqMakeTable.position));
-			System.out.println("Slide len: "+qSlide.size());
-			System.out.println("Loading "+rgLoadArea.usedSpace);
-			 System.out.println(rgLoadArea.usedSpace);
-			 System.out.println(qSlide.size());
+			 System.out.println("Delivery q: "+qDeliveryArea.size());
+			System.out.println("CUTBOX "+qUnloadArea.size());
+			 System.out.println("Drivers out"+rgDeliveryDrivers.numBusy);
 			 System.out.println();
 			 showSBL();
 		}
