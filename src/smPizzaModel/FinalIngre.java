@@ -33,7 +33,6 @@ public class FinalIngre extends ConditionalActivity {
 
     @Override
     protected void terminatingEvent() {
-        // TODO: Needs to check for correctness
         model.qSlide.add(iCPizza);
         model.rqMakeTable.position[MakeTable.POS5] = null;
         model.rqMakeTable.numBusy--;
