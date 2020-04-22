@@ -6,7 +6,6 @@ import smPizzaModel.Order.Type;
 public class CutBoxing extends ConditionalActivity{
 
 	static SMPizza model;
-	Baking baking;
 	Pizza pizza;
 	Order order;
 	
