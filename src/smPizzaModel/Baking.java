@@ -7,6 +7,10 @@ public class Baking extends SequelActivity {
 
 	static SMPizza model;
 	Pizza pizza;
+
+	public Baking(Pizza pizza){
+		this.pizza = pizza;
+	}
 	
 	public void startingEvent()
 	{
@@ -23,11 +27,7 @@ public class Baking extends SequelActivity {
 	public void terminatingEvent()
 	{
 		model.qUnloadArea.add(this.pizza);
-
 	}
 	
-	
-	public void spStartSequel(Pizza pizza) {
-	}
 
 }

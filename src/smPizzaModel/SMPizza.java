@@ -33,6 +33,8 @@ public class SMPizza extends AOSimulationModel
 	  //Delivery Area
 	  protected ArrayList<Order> qDeliveryArea = new ArrayList<Order>();
 
+	  protected DeliveryDrivers rgDeliveryDrivers = new DeliveryDrivers();
+
 	  
 	  // No orders to read initially
 	  protected Order qOrders = new Order();
@@ -43,20 +45,27 @@ public class SMPizza extends AOSimulationModel
 	
 	// References to RVP and DVP objects
 	protected RVPs rvp;  // Reference to rvp object - object created in constructor
-	protected DVPs dvp = new DVPs(this);  // Reference to dvp object
+	protected DVPs dvp = new DVPs();  // Reference to dvp object
 	protected UDPs udp = new UDPs();
 
 	// Output object
-	protected Output output = new Output(this);
+	protected Output output = new Output();
+	boolean traceFlag = false;
+
 	
 	// Output values - define the public methods that return values
 	// required for experimentation.
 
 
 	// Constructor
-	public SMPizza(double t0time, double tftime, Seeds sd)
+	public SMPizza(double t0time, double tftime, int numPersons, int totalDrivers, int loadareaSize, Seeds sd, boolean flg)
 	{
+		traceFlag = flg;
 		// Initialise parameters here
+		initialiseClasses();
+		rqMakeTable.numPersons = numPersons;
+		rgDeliveryDrivers.totalNumber = totalDrivers;
+		rgLoadArea.size = loadareaSize;
 		
 		// Create RVP object with given seed
 		rvp = new RVPs(sd);
@@ -70,29 +79,107 @@ public class SMPizza extends AOSimulationModel
 		Initialise init = new Initialise();
 		scheduleAction(init);  // Should always be first one scheduled.
 		// Schedule other scheduled actions and acitvities here
+		OrderArrivals arrivals = new OrderArrivals();
+		scheduleAction(arrivals);
 	}
 
 	/************  Implementation of Data Modules***********/	
 	/*
 	 * Testing preconditions
 	 */
+
+	 protected void initialiseClasses(){
+		 Baking.model = this;
+		 CutBoxing.model = this;
+		 Delivery.model = this;
+		 DoughSauce.model = this;
+		 DVPs.model = this;
+		 FinalIngre.model = this;
+		 Initialise.model = this;
+		 Loading.model = this;
+		 MovePizzaOutOfPOS1.model = this;
+		 MovePizzaOutOfPOS3.model = this;
+		 OrderArrivals.model = this;
+		 PrimaryIngre.model = this;
+		 ReturnShop.model = this;
+		 RVPs.model = this;
+		 UDPs.model = this;
+	 }
+
 	protected void testPreconditions(Behaviour behObj)
 	{
 		reschedule (behObj);
 		// Check preconditions of Conditional Activities
 
+		while (scanPreconditions() == true) /* repeat */;
+
+
 		// Check preconditions of Interruptions in Extended Activities
 	}
-	
-	public void eventOccured()
-	{
-		//this.showSBL();
-		// Can add other debug code to monitor the status of the system
-		// See examples for suggestions on setup logging
 
-		// Setup an updateTrjSequences() method in the Output class
-		// and call here if you have Trajectory Sets
-		// updateTrjSequences() 
+	private boolean scanPreconditions()
+	{
+		boolean statusChanged = false;
+		// Conditional Actions ----------------------------
+		if (MovePizzaOutOfPOS1.precondition() == true)
+		{
+			MovePizzaOutOfPOS1 act = new MovePizzaOutOfPOS1(); // Generate instance
+			act.actionEvent();
+			statusChanged = true;
+		}
+
+		if (MovePizzaOutOfPOS3.precondition() == true)
+		{
+			MovePizzaOutOfPOS3 act = new MovePizzaOutOfPOS3(); // Generate instance
+			act.actionEvent();
+			statusChanged = true;
+		}
+
+		// Conditional Activities ------------------------
+		if (DoughSauce.precondition() == true)
+		{
+			DoughSauce act = new DoughSauce(); // Generate instance
+			act.startingEvent();
+			scheduleActivity(act);
+			statusChanged = true;
+		}
+
+		if (PrimaryIngre.precondition() == true)
+		{
+			PrimaryIngre act = new PrimaryIngre(); // Generate instance
+			act.startingEvent();
+			scheduleActivity(act);
+			statusChanged = true;
+		}
+		if (FinalIngre.precondition() == true)
+		{
+			FinalIngre act = new FinalIngre(); // Generate instance
+			act.startingEvent();
+			scheduleActivity(act);
+			statusChanged = true;
+		}
+		if (Loading.precondition() == true)
+		{
+			Loading act = new Loading(); // Generate instance
+			act.startingEvent();
+			scheduleActivity(act);
+			statusChanged = true;
+		}
+		if (CutBoxing.precondition() == true)
+		{
+			CutBoxing act = new CutBoxing(); // Generate instance
+			act.startingEvent();
+			scheduleActivity(act);
+			statusChanged = true;
+		}
+		if (Delivery.precondition() == true)
+		{
+			Delivery act = new Delivery(); // Generate instance
+			act.startingEvent();
+			scheduleActivity(act);
+			statusChanged = true;
+		}
+		return (statusChanged);
 	}
 
 	// Standard Procedure to start Sequel Activities with no parameters
@@ -100,7 +187,28 @@ public class SMPizza extends AOSimulationModel
 	{
 		seqAct.startingEvent();
 		scheduleActivity(seqAct);
-	}	
+	}
+
+	public void eventOccured() {
+				//this.showSBL();
+		// Can add other debug code to monitor the status of the system
+		// See examples for suggestions on setup logging
+
+		// Setup an updateTrjSequences() method in the Output class
+		// and call here if you have Trajectory Sets
+		// updateTrjSequences() 
+
+		// PriorityQueue<SBNotice> sbl = this.getCopySBL();
+		// kkShowSBL(sbl);
+		if(traceFlag)
+		{
+			 System.out.println("Clock: "+getClock()+
+	                    ", Q.Techphone.n: "+qTechphone.size()+
+	                    ", numOrders.n: "+output.numOrders+ ", propnumsatisfied "+output.propOrdersSatisfied);
+			 showSBL();			
+		}
+		 //
+	}
 
 }
 

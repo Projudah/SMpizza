@@ -32,24 +32,44 @@ class RVPs
 	final static double BOXMEAN = 3.41;
 	final static double BOXSDEV = 1.07;
 
+	final static double MINPEAKLENGTH = 15, MAXPEAKLENGTH = 20, MINPEAKORDERS=20, 
+	MAXPEAKORDERS=60, MINOFFPEAKORDERS = 5, MAXOFFPEAKORDERS = 20, PEAKSTARTMEAN=90.5, PEAKSTARTSDEV=52.1;
+
 	private final double [] sizePdf = { PERSML, PERMED, PERLRG }; // for creating discrete PDF
 	private final double [] orderSizePdf = { PERDEL, PERCAR }; // for creating discrete PDF
 	private final double [] pizzaNumPdf = { PER1, PER2, PER3 }; // for creating discrete PDF
 
 	private final EmpiricalWalker pizzaSizeDM, orderTypeDM, pizzaNumDM;
-	private final Uniform triangularDist;
-	private final Normal boxingDist;
+	private final Uniform triangularDist, lengthOfPeak, peakOrdersPerHour, offPeakOrdersPerHour ;
+	private final Normal boxingDist, peakStartTime;
 
 	/* Random Variate Procedure for Arrivals */
-	private final Exponential interArrDist;  // Exponential distribution for interarrival times
-	private final double WMEAN1=10.0;
+	private final Exponential peakinterArrDist, offpeakinterArrDist;  // Exponential distribution for interarrival times
+
+	double p_length, peak_start_time;
 
 
 	// Constructor
 	protected RVPs(final Seeds sd) 
 	{ 
 	// Set up distribution functions
-		interArrDist = new Exponential(1.0/WMEAN1, new MersenneTwister(sd.arr));
+		lengthOfPeak = new Uniform(MINPEAKLENGTH, MAXPEAKLENGTH, sd.arr);
+		peakOrdersPerHour = new Uniform(MINPEAKORDERS, MAXPEAKORDERS, sd.arr);
+		offPeakOrdersPerHour = new Uniform(MINOFFPEAKORDERS, MAXOFFPEAKORDERS, sd.arr);
+		peakStartTime = new Normal(PEAKSTARTMEAN, PEAKSTARTSDEV, new MersenneTwister(sd.arr));
+
+		double peak_per_hour = peakOrdersPerHour.nextDouble();
+		double off_peak_per_hour = offPeakOrdersPerHour.nextDouble();
+
+		p_length = lengthOfPeak.nextDouble();
+		peak_start_time = peakStartTime.nextDouble();
+
+		double pMEAN = 1/peak_per_hour;
+		double oMEAN = 1/off_peak_per_hour;
+
+		peakinterArrDist = new Exponential(1.0/pMEAN, new MersenneTwister(sd.arr));
+		offpeakinterArrDist = new Exponential(1.0/oMEAN, new MersenneTwister(sd.arr));
+
 		pizzaSizeDM = new EmpiricalWalker(sizePdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.sp));
 		orderTypeDM = new EmpiricalWalker(orderSizePdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.ot));
 		pizzaNumDM = new EmpiricalWalker(pizzaNumPdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.np));
@@ -58,14 +78,14 @@ class RVPs
 		boxingDist = new Normal(BOXMEAN, BOXSDEV, new MersenneTwister(sd.cb));
 	}
 	
-	protected double duInput()  // for getting next value of duInput
+	protected double DuOrder()  // for getting next value of DuOrder
 	{
-	    double nxtInterArr;
-
-        nxtInterArr = interArrDist.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
-	    return(nxtInterArr+model.getClock());
+		double nxtInterArr;
+		
+		if( peak_start_time <= model.getClock() && model.getClock() <= peak_start_time + p_length){
+			return peakinterArrDist.nextDouble() + model.getClock();
+		}
+	    return offpeakinterArrDist.nextDouble() + model.getClock();
 	}
 
 	protected double BoxCuttingTime(){

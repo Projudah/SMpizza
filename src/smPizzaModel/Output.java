@@ -2,9 +2,8 @@ package smPizzaModel;
 
 class Output 
 {
-	SMPizza model;
+	static SMPizza model;
 	
-	protected Output(SMPizza md) { model = md; }
     // Use OutputSequence class to define Trajectory and Sample Sequences
     // Trajectory Sequences
 
@@ -17,5 +16,5 @@ class Output
     // SSOVs
 	protected int numOrders;
 	protected int numOrdersSatisfied;
-	public int propOrdersSatisfied;
+	protected double propOrdersSatisfied;
 }

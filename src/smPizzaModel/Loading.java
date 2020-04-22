@@ -8,21 +8,15 @@ public class Loading extends ConditionalActivity{
 	Baking baking;
 	Pizza pizza;
 	
-	public static boolean precondition(SMPizza model)
+	public static boolean precondition()
 	{
-		boolean retVal = false;
-		if(model.udp.CanLoadPizza() == true)
-		{
-			retVal = true;
-		}
-		return(retVal);
-		
+		return model.udp.CanLoadPizza();
 	}
 	
 	public void startingEvent()
 	{
-		this.pizza = (Pizza) model.udp.GetNextPizza();
-		model.rgLoadArea.usedSpace = model.rgLoadArea.usedSpace + this.pizza.size.getValue();		
+		this.pizza = model.udp.GetNextPizza();
+		model.rgLoadArea.usedSpace += this.pizza.size.getValue();		
 	}
 	
 	public double duration()
@@ -32,7 +26,8 @@ public class Loading extends ConditionalActivity{
 	
 	public void terminatingEvent()
 	{
-		this.baking.spStartSequel(this.pizza);
+		Baking baking = new Baking(this.pizza);
+		model.spStart(baking);
 
 	}
 }

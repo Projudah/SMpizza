@@ -2,11 +2,9 @@ package smPizzaModel;
 
 class DVPs 
 {
-	SMPizza model;  // for accessing the clock
+	static SMPizza model;  // for accessing the clock
 	
 	// Constructor
-	protected DVPs(SMPizza model) { this.model = model; }
-
 	// Translate deterministic value procedures into methods
         /* -------------------------------------------------
 	                       Example

@@ -31,16 +31,16 @@ class Initialise extends ScheduledAction{
 		// no pizzas in load area
 		model.rgLoadArea.usedSpace = 0;
 					    
-	    // model.qTechphone.n = 0;
+		for(int i= MakeTable.POS1 ; i <= MakeTable.POS5 ; i++)
+	    {
+	    	 model.rqMakeTable.position[i] = null;
+	    }
 
 	    model.output.numOrders = 0;
-	    model.output.numOrdersSatisfied = 0;
-	    
+		model.output.numOrdersSatisfied = 0;
+		model.output.totalCost = model.dvp.GetTotalCost();
 
-	    /*for(i=pos;i<rq.MakeTable.position;i++)
-	    {
-	    	 pos=none;
-	    }*/
+		model.rgDeliveryDrivers.numBusy = 0;
 		
 	}
 

@@ -5,18 +5,11 @@ import simulationModelling.SequelActivity;
 
 
 public class ReturnShop extends SequelActivity {
-	SMPizza model;
+	static SMPizza model;
 	private double deliveryTime;
     
-	public ReturnShop(SMPizza m, double dTime) {
-		this.model = m;
+	public ReturnShop(double dTime) {
 		this.deliveryTime = dTime;
-	}
-	
-	
-	protected double timeSequence() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 	
 	public void startingEvent() 
@@ -25,13 +18,12 @@ public class ReturnShop extends SequelActivity {
 	}
 	protected double duration() 
 	{
-		//double dur = model.rvp.uDeliveryTime();
 		return deliveryTime;
 	}
 
 	protected void terminatingEvent() 
 	{
-		this.model.rgDeliveryDrivers.numBusy--;
+		model.rgDeliveryDrivers.numBusy--;
 	}
 
 	

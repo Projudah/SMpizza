@@ -10,7 +10,7 @@ class Experiment
 {
    public static void main(String[] args)
    {
-       int i, NUMRUNS = 30; 
+       int i, NUMRUNS = 1; 
        double startTime=0.0, endTime=660.0;
        Seeds[] sds = new Seeds[NUMRUNS];
        SMPizza mname;  // Simulation object
@@ -24,7 +24,7 @@ class Experiment
        System.out.println(" Case 1");
        for(i=0 ; i < NUMRUNS ; i++)
        {
-          mname = new SMPizza(startTime,endTime,sds[i]);
+          mname = new SMPizza(startTime, endTime, 3, 30, 435, sds[i], true);
           mname.runSimulation();
           // See examples for hints on collecting output
           // and developping code for analysis
