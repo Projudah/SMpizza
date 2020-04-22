@@ -14,7 +14,7 @@ public class Baking extends SequelActivity {
 	
 	public void startingEvent()
 	{
-		/* Empty activity*/	
+		model.rgLoadArea.usedSpace -= this.pizza.size.getValue();
 	}
 	
 	

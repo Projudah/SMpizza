@@ -20,7 +20,7 @@ public class FinalIngre extends ConditionalActivity {
 
     @Override
     public void startingEvent() {
-        iCPizza = model.rqMakeTable.position[MakeTable.POS5];
+        iCPizza = model.rqMakeTable.position[MakeTable.POS4];
         model.rqMakeTable.position[MakeTable.POS5] = model.rqMakeTable.position[MakeTable.POS4];
         model.rqMakeTable.position[MakeTable.POS4] = null;
         model.rqMakeTable.numBusy++;

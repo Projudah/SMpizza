@@ -67,8 +67,9 @@ class RVPs
 		double pMEAN = 1/peak_per_hour;
 		double oMEAN = 1/off_peak_per_hour;
 
-		peakinterArrDist = new Exponential(1.0/pMEAN, new MersenneTwister(sd.arr));
-		offpeakinterArrDist = new Exponential(1.0/oMEAN, new MersenneTwister(sd.arr));
+
+		peakinterArrDist = new Exponential(pMEAN, new MersenneTwister(sd.arr));
+		offpeakinterArrDist = new Exponential(oMEAN, new MersenneTwister(sd.arr));
 
 		pizzaSizeDM = new EmpiricalWalker(sizePdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.sp));
 		orderTypeDM = new EmpiricalWalker(orderSizePdf, Empirical.NO_INTERPOLATION, new MersenneTwister(sd.ot));
@@ -79,12 +80,14 @@ class RVPs
 	}
 	
 	protected double DuOrder()  // for getting next value of DuOrder
-	{
-		double nxtInterArr;
-		
+	{		
 		if( peak_start_time <= model.getClock() && model.getClock() <= peak_start_time + p_length){
+			System.out.println("next"+peakinterArrDist.nextDouble());
+
 			return peakinterArrDist.nextDouble() + model.getClock();
 		}
+		System.out.println("next off"+offpeakinterArrDist.nextDouble());
+
 	    return offpeakinterArrDist.nextDouble() + model.getClock();
 	}
 

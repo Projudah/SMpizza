@@ -14,8 +14,6 @@ public class PrimaryIngre extends ConditionalActivity {
     public void startingEvent() {
         iCPizza = new Pizza();
         iCPizza = model.rqMakeTable.position[MakeTable.POS2];
-        model.rqMakeTable.position[MakeTable.POS3] = model.rqMakeTable.position[MakeTable.POS2];
-        model.rqMakeTable.position[MakeTable.POS2] = null;
         model.rqMakeTable.numBusy++;
     }
 
@@ -26,6 +24,9 @@ public class PrimaryIngre extends ConditionalActivity {
 
     @Override
     protected void terminatingEvent() {
+        model.rqMakeTable.position[MakeTable.POS3] = model.rqMakeTable.position[MakeTable.POS2];
+        model.rqMakeTable.position[MakeTable.POS2] = null;
+
         model.rqMakeTable.position[MakeTable.POS4] = model.rqMakeTable.position[MakeTable.POS3];
         model.rqMakeTable.position[MakeTable.POS3] = null;
         model.rqMakeTable.numBusy--;

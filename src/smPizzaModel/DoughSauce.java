@@ -20,11 +20,10 @@ public class DoughSauce extends ConditionalActivity
 		iCPizza.size = model.rvp.SizeOfPizza();
         model.rqMakeTable.numBusy++;
         iCOrder.uNumPizzasStarted++;
-
-        if(iCOrder.uNumPizzasStarted >=iCOrder.uNumPizzasCompleted){
+		// System.out.println(Integer.toString(iCOrder.uNumPizzasStarted) +"/"+ Integer.toString(iCOrder.uNumPizzas));
+        if(iCOrder.uNumPizzasStarted >=iCOrder.uNumPizzas){
             model.qTechphone.remove(0);
         }
-        model.rqMakeTable.position[MakeTable.POS1] = iCPizza;
 	}
 
 	protected double duration() 
@@ -34,6 +33,7 @@ public class DoughSauce extends ConditionalActivity
 
 	protected void terminatingEvent() 
 	{
+		model.rqMakeTable.position[MakeTable.POS1] = iCPizza;
 		model.rqMakeTable.numBusy--;
 	}
 

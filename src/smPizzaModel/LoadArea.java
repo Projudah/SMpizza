@@ -2,7 +2,7 @@ package smPizzaModel;
 
 public class LoadArea {
 	
-	protected int usedSpace, totalSpace;
+	protected int usedSpace;
 	protected int size;
 	
 

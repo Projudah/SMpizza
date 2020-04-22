@@ -16,7 +16,8 @@ public class Loading extends ConditionalActivity{
 	public void startingEvent()
 	{
 		this.pizza = model.udp.GetNextPizza();
-		model.rgLoadArea.usedSpace += this.pizza.size.getValue();		
+		model.rgLoadArea.usedSpace += this.pizza.size.getValue();
+		System.out.println("Remaining space: "+(model.rgLoadArea.size-model.rgLoadArea.usedSpace));	
 	}
 	
 	public double duration()
@@ -25,7 +26,7 @@ public class Loading extends ConditionalActivity{
 	}
 	
 	public void terminatingEvent()
-	{
+	{	
 		Baking baking = new Baking(this.pizza);
 		model.spStart(baking);
 

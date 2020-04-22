@@ -24,7 +24,7 @@ class Experiment
        System.out.println(" Case 1");
        for(i=0 ; i < NUMRUNS ; i++)
        {
-          mname = new SMPizza(startTime, endTime, 3, 30, 435, sds[i], true);
+          mname = new SMPizza(startTime, endTime, 1, 1, 435, sds[i], true);
           mname.runSimulation();
           // See examples for hints on collecting output
           // and developping code for analysis
