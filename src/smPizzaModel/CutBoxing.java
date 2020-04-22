@@ -23,7 +23,7 @@ public class CutBoxing extends ConditionalActivity{
 	public void startingEvent()
 	{
 		model.rCutBoxEmp.isBusy = true;
-	    this.pizza = model.qUnloadArea.spRemoveQue();
+	    this.pizza = model.qUnloadArea.remove(0);
 	    this.order = this.pizza.associatedOrder;
 	}
 	
@@ -35,14 +35,13 @@ public class CutBoxing extends ConditionalActivity{
 	public void terminatingEvent()
 	{
 		this.order.uNumPizzasCompleted += 1;
-		this.pizza.spleave();
+		// this.pizza.spleave(); don't need to have any SP
 		if(this.order.uNumPizzasCompleted == this.order.uNumPizzas)
 		{
 			
 			if(this.order.uType == Type.DELIVERY)
 			{
-				model.qDeliveryArea.spInsertQue(this.order);
-				model.qDeliveryArea.n++;
+				model.qDeliveryArea.add(this.order);
 			}
 			
 			else
@@ -54,7 +53,6 @@ public class CutBoxing extends ConditionalActivity{
 				}
 				
 				 model.output.propOrdersSatisfied = model.output.numOrdersSatisfied/model.output.numOrders;
-				 this.order.spleave();
 			}
 		}
 

@@ -21,7 +21,8 @@ public class SMPizza extends AOSimulationModel
 	  protected LoadArea rgLoadArea = new LoadArea();
 	  
 	  // Oven unload zone
-	  protected UnloadArea qUnloadArea = new UnloadArea();
+	  protected ArrayList<Pizza> qUnloadArea = new ArrayList<Pizza>();
+
 	  
 	  //Slide
 	  protected ArrayList<Pizza> qSlide = new ArrayList<Pizza>();
@@ -30,7 +31,8 @@ public class SMPizza extends AOSimulationModel
 	  protected CutBoxEmp rCutBoxEmp = new CutBoxEmp();
 	  
 	  //Delivery Area
-	  protected DeliveryArea qDeliveryArea = new DeliveryArea();
+	  protected ArrayList<Order> qDeliveryArea = new ArrayList<Order>();
+
 	  
 	  // No orders to read initially
 	  protected Order qOrders = new Order();

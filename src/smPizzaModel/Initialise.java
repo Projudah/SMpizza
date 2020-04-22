@@ -30,14 +30,7 @@ class Initialise extends ScheduledAction{
 		
 		// no pizzas in load area
 		model.rgLoadArea.usedSpace = 0;
-		
-		// no pizzas in unload area
-		model.qUnloadArea.n = 0;
-		
-		// Set delivery area
-	    model.qDeliveryArea.n = 0;
-	    
-	    //no calls
+					    
 	    // model.qTechphone.n = 0;
 
 	    model.output.numOrders = 0;
