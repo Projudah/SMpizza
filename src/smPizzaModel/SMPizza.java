@@ -65,7 +65,7 @@ public class SMPizza extends AOSimulationModel
 		traceFlag = flg;
 		// Initialise parameters here
 		closingTime = 180;
-		initialiseClasses();
+		initialiseClasses(sd);
 		rqMakeTable.numPersons = numPersons;
 		rgDeliveryDrivers.totalNumber = totalDrivers;
 		rgLoadArea.size = loadareaSize;
@@ -91,7 +91,7 @@ public class SMPizza extends AOSimulationModel
 	 * Testing preconditions
 	 */
 
-	 protected void initialiseClasses(){
+	 protected void initialiseClasses(Seeds sd){
 		 Baking.model = this;
 		 CutBoxing.model = this;
 		 Delivery.model = this;
@@ -107,6 +107,7 @@ public class SMPizza extends AOSimulationModel
 		 ReturnShop.model = this;
 		 RVPs.model = this;
 		 UDPs.model = this;
+		 OrderArrivals.initRvps(sd);
 	 }
 
 	 public boolean implicitStopCondition() // termination explicit
