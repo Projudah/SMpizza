@@ -108,6 +108,8 @@ public class SMPizza extends AOSimulationModel
 		 RVPs.model = this;
 		 UDPs.model = this;
 		 OrderArrivals.initRvps(sd);
+		 CutBoxing.initRvps(sd);
+		 DoughSauce.initRvps(sd);
 	 }
 
 	 public boolean implicitStopCondition() // termination explicit

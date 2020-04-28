@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import simulationModelling.ConditionalActivity;
 
+import static smPizzaModel.RVPs.triangularDistribution;
+
 public class PrimaryIngre extends ConditionalActivity {
 
     static SMPizza model;
@@ -25,12 +27,28 @@ public class PrimaryIngre extends ConditionalActivity {
 
     @Override
     protected double duration() {
-        return model.rvp.uPrimaryIngrTime(iCPizza.size);
+        return rvpuPrimaryIngrTime(iCPizza.size);
     }
 
     @Override
     protected void terminatingEvent() {
         model.rqMakeTable.positionBusy[MakeTable.POS3] = false;
         model.rqMakeTable.numBusy--;
+    }
+
+    // RVP
+
+    public double rvpuPrimaryIngrTime(Pizza.Size size){
+        double Tm = 0;
+        if(size == Pizza.Size.LARGE){
+            Tm = triangularDistribution(0.6, 0.8, 1);
+        }else if(size == Pizza.Size.MEDIUM){
+            Tm = triangularDistribution(0.5, 0.7, 0.9);
+        }else if(size == Pizza.Size.SMALL){
+            Tm = triangularDistribution(0.4, 0.5, 0.6);
+        }else{
+            System.out.println("uPrimaryIngrTime - invalid type "+size);
+        }
+        return(Tm);
     }
 }

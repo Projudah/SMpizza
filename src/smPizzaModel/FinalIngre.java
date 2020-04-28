@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import simulationModelling.ConditionalActivity;
 
+import static smPizzaModel.RVPs.triangularDistribution;
+
 public class FinalIngre extends ConditionalActivity {
 
     static SMPizza model;
@@ -24,7 +26,7 @@ public class FinalIngre extends ConditionalActivity {
 
     @Override
     protected double duration() {
-        return model.rvp.uFinalIngrTime(iCPizza.size);
+        return rvpuFinalIngrTime(iCPizza.size);
     }
 
     @Override
@@ -32,5 +34,21 @@ public class FinalIngre extends ConditionalActivity {
         model.qSlide.add(iCPizza);
         model.rqMakeTable.position[MakeTable.POS5] = null;
         model.rqMakeTable.numBusy--;
+    }
+
+    // RVP
+    protected double rvpuFinalIngrTime(Pizza.Size size){
+        double Tm = 0;
+        if(size == Pizza.Size.LARGE){
+            Tm = triangularDistribution(0.5, 0.6, 0.7);
+        }else if(size == Pizza.Size.MEDIUM){
+            Tm = triangularDistribution(0.4, 0.5, 0.6);
+        }else if(size == Pizza.Size.SMALL){
+            Tm = triangularDistribution(0.3, 0.4, 0.5);
+        }else{
+            System.out.println("uFinalIngrTime - invalid type "+size);
+        }
+        System.out.println("rvpuFinalIngrTime"+ Tm);
+        return(Tm);
     }
 }
