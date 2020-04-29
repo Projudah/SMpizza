@@ -14,7 +14,7 @@ public class DoughSauce extends ConditionalActivity
 	
 	protected static boolean precondition()
 	{
-		return model.udp.CanStartDoughSaucing(); //come finish
+		return udpCanStartDoughSaucing(); //come finish
 	}
 
 	public void startingEvent() 
@@ -44,6 +44,25 @@ public class DoughSauce extends ConditionalActivity
 		model.rqMakeTable.numBusy--;
 	}
 
+	//UDP
+	//Throws Null pointer exception while using nested if
+	protected static boolean udpCanStartDoughSaucing(){
+		if(model.rqMakeTable.position[MakeTable.POS1] != null){
+			return false;
+		}
+
+		if(PrimaryIngre.udpCanStartPrimaryIngre() || FinalIngre.udpCanStartFinalIngre()){
+			return false;
+		}
+		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
+			return false;
+		}
+		if(model.qTechphone.isEmpty()) {
+			return false;
+		}
+		return true;
+		}
+	
 	//RVP
 	final static double PERSML = 0.12;
 	final static double PERMED = 0.56;

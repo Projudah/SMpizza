@@ -6,15 +6,15 @@ import simulationModelling.SequelActivity;
 public class Baking extends SequelActivity {
 
 	static SMPizza model;
-	Pizza pizza;
+	Pizza iCPizza;
 
 	public Baking(Pizza pizza){
-		this.pizza = pizza;
+		this.iCPizza = pizza;
 	}
 	
 	public void startingEvent()
 	{
-		model.rgLoadArea.usedSpace -= this.pizza.size.getValue();
+		model.rgLoadArea.usedSpace -= this.iCPizza.size.getValue();
 	}
 	
 	
@@ -26,7 +26,7 @@ public class Baking extends SequelActivity {
 	
 	public void terminatingEvent()
 	{
-		model.qUnloadArea.add(this.pizza);
+		model.qUnloadArea.add(this.iCPizza);
 	}
 	
 

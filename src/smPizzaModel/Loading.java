@@ -6,17 +6,17 @@ public class Loading extends ConditionalActivity{
 
 	static SMPizza model;
 	Baking baking;
-	Pizza pizza;
+	Pizza iCPizza;
 	
 	public static boolean precondition()
 	{
-		return model.udp.CanLoadPizza();
+		return udpCanLoadPizza();
 	}
 	
 	public void startingEvent()
 	{
-		this.pizza = model.udp.GetNextPizza();
-		model.rgLoadArea.usedSpace += this.pizza.size.getValue();
+		this.iCPizza = udpGetNextPizza();
+		model.rgLoadArea.usedSpace += this.iCPizza.size.getValue();
 		System.out.println("Remaining space: "+(model.rgLoadArea.size-model.rgLoadArea.usedSpace));	
 	}
 	
@@ -27,8 +27,30 @@ public class Loading extends ConditionalActivity{
 	
 	public void terminatingEvent()
 	{	
-		Baking baking = new Baking(this.pizza);
+		Baking baking = new Baking(this.iCPizza);
 		model.spStart(baking);
-
 	}
+	
+	//UDP
+	protected static boolean udpCanLoadPizza(){
+		double freeSpace = model.rgLoadArea.size - model.rgLoadArea.usedSpace;
+		for(Pizza pizza : model.qSlide){
+			if(pizza.size.getValue() <= freeSpace) {
+				return true;
+			}
+		}
+		return false;
+	}
+		
+	protected Pizza udpGetNextPizza(){
+		double freeSpace = model.rgLoadArea.size - model.rgLoadArea.usedSpace;
+		for(Pizza pizza : model.qSlide){
+			if(pizza.size.getValue() <= freeSpace){
+				model.qSlide.remove(pizza);
+				return pizza;
+			}
+		}
+		return null;
+	}
+	
 }

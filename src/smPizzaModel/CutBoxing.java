@@ -8,7 +8,7 @@ import smPizzaModel.Order.Type;
 public class CutBoxing extends ConditionalActivity{
 
 	static SMPizza model;
-	Pizza pizza;
+	Pizza iCPizza;
 	Order order;
 	/************  Implementation of User Modules ***********/
 	final static double BOXMEAN = 3.41;
@@ -23,8 +23,8 @@ public class CutBoxing extends ConditionalActivity{
 	public void startingEvent()
 	{
 		model.rCutBoxEmp.isBusy = true;
-	    this.pizza = model.qUnloadArea.remove(0);
-		this.order = this.pizza.associatedOrder;
+	    this.iCPizza = model.qUnloadArea.remove(0);
+		this.order = this.iCPizza.associatedOrder;
 		System.out.println(this.order.startTime+"___________________STARTING CUTBOX FOR "+(this.order.startTime));
 
 	}

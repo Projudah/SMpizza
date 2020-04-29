@@ -12,7 +12,7 @@ public class FinalIngre extends ConditionalActivity {
     Pizza iCPizza;
     protected static boolean precondition()
     {
-       return model.udp.CanStartFinalIngre();
+       return udpCanStartFinalIngre();
     }
 
     @Override
@@ -36,6 +36,13 @@ public class FinalIngre extends ConditionalActivity {
         model.rqMakeTable.numBusy--;
     }
 
+    //UDP
+    protected static boolean udpCanStartFinalIngre(){
+		return ((model.rqMakeTable.numBusy <= model.rqMakeTable.numPersons) &&
+		(model.rqMakeTable.position[MakeTable.POS5] == null) &&
+		(model.rqMakeTable.position[MakeTable.POS4] != null));
+	}
+    
     // RVP
     protected double rvpuFinalIngrTime(Pizza.Size size){
         double Tm = 0;

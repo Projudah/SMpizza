@@ -11,7 +11,7 @@ public class PrimaryIngre extends ConditionalActivity {
     static SMPizza model;
     Pizza iCPizza;
     protected static boolean precondition() {
-       return model.udp.CanStartPrimaryIngre();
+       return udpCanStartPrimaryIngre();
     }
 
     @Override
@@ -36,8 +36,28 @@ public class PrimaryIngre extends ConditionalActivity {
         model.rqMakeTable.numBusy--;
     }
 
-    // RVP
+    
+    //UDP
+    //Throws Null pointer exception while using nested if
+    protected static boolean udpCanStartPrimaryIngre(){
+		if(model.rqMakeTable.position[MakeTable.POS3] != null){
+			return false;
+		}
+		if(FinalIngre.udpCanStartFinalIngre()){
+			return false;
+		}
+		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
+			return false;
+		}
+		if(model.rqMakeTable.position[MakeTable.POS2] == null){
+			return false;
+		}
+		return true;
 
+	}
+    
+    
+    // RVP
     public double rvpuPrimaryIngrTime(Pizza.Size size){
         double Tm = 0;
         if(size == Pizza.Size.LARGE){
