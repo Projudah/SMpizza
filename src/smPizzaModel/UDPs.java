@@ -69,7 +69,7 @@ class UDPs
 	protected boolean CanLoadPizza(){
 		double freeSpace = model.rgLoadArea.size - model.rgLoadArea.usedSpace;
 		for(Pizza pizza : model.qSlide){
-			if(pizza.size.getValue() <= freeSpace){
+			if(pizza.size <= freeSpace){
 				return true;
 			}
 		}
@@ -79,7 +79,7 @@ class UDPs
 	protected Pizza GetNextPizza(){
 		double freeSpace = model.rgLoadArea.size - model.rgLoadArea.usedSpace;
 		for(Pizza pizza : model.qSlide){
-			if(pizza.size.getValue() <= freeSpace){
+			if(pizza.size <= freeSpace){
 				model.qSlide.remove(pizza);
 				return pizza;
 			}

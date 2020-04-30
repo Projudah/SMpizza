@@ -29,7 +29,7 @@ class RVPs
 	final static double PER3 = 0.5;
 
 
-	final static double BOXMEAN = 3.41;
+	final static double BOXMEAN = 1.5;
 	final static double BOXSDEV = 1.07;
 
 	final static double MINPEAKLENGTH = 15, MAXPEAKLENGTH = 20, MINPEAKORDERS=20, 
@@ -53,7 +53,7 @@ class RVPs
 
 
 	// Constructor
-	protected RVPs(Seeds sd) 
+	protected RVPs(final Seeds sd) 
 	{ 
 	// Set up distribution functions
 		lengthOfPeak = new Uniform(MINPEAKLENGTH, MAXPEAKLENGTH, sd.arr);
@@ -61,8 +61,8 @@ class RVPs
 		offPeakOrdersPerHour = new Uniform(MINOFFPEAKORDERS, MAXOFFPEAKORDERS, sd.arr);
 		peakStartTime = new Normal(PEAKSTARTMEAN, PEAKSTARTSDEV, new MersenneTwister(sd.arr));
 
-		double peak_per_hour = peakOrdersPerHour.nextDouble();
-		double off_peak_per_hour = offPeakOrdersPerHour.nextDouble();
+		final double peak_per_hour = peakOrdersPerHour.nextDouble();
+		final double off_peak_per_hour = offPeakOrdersPerHour.nextDouble();
 
 		p_length = lengthOfPeak.nextDouble();
 		peak_start_time = peakStartTime.nextDouble();
@@ -96,19 +96,19 @@ class RVPs
 		}
 
 		nxtArrival = model.getClock()+interArrDist.nextDouble(1.0/mean);
-		// System.out.println(tot+" NEXT ORDER IN "+ (nxtArrival - model.getClock()));
+		System.out.println(tot+" NEXT ORDER IN "+ (nxtArrival - model.getClock()));
 		if(nxtArrival > model.closingTime) 
 			nxtArrival = -1.0;  // Ends time sequence
 		return(nxtArrival);
 	}
 
-	protected double BoxCuttingTime(){
-		double time = boxingDist.nextDouble();
+	protected double uBoxCuttingTime(){
+		final double time = boxingDist.nextDouble();
 		System.out.println("____________________CUT AND BOX TIME "+time);
 		return time;
 	}
 
-	protected Size SizeOfPizza()
+	protected int uSizeOfPizza()
 	{
 		Size size;		
 		switch(pizzaSizeDM.nextInt())
@@ -120,7 +120,7 @@ class RVPs
 			   System.out.println("SizeOfPizza returned invalid value");
 		   	   size = Size.SMALL;		   	
 		}
-		return(size);
+		return(size.getValue());
 	}
 
 	protected Type uOrderType()
@@ -141,19 +141,19 @@ class RVPs
 		return triangularDistribution(3, 5, 12);
 	}
 
-	protected int NumberOfPizzas()
+	protected int uNumberOfPizzas()
 	{
-		int num = pizzaNumDM.nextInt() + 1;	
+		final int num = pizzaNumDM.nextInt() + 1;	
 		return(num);
 	}
 
-	protected double uDoughSaucingTime(Size size){
+	protected double uDoughSaucingTime(final int size){
 		double Tm = 0;
-		if(size == Size.LARGE){
+		if(size == Size.LARGE.getValue()){
 			Tm = triangularDistribution(0.5, 0.7, 0.8);
-		}else if(size == Size.MEDIUM){
+		}else if(size == Size.MEDIUM.getValue()){
 			Tm = triangularDistribution(0.4, 0.6, 0.8);
-		}else if(size == Size.SMALL){
+		}else if(size == Size.SMALL.getValue()){
 			Tm = triangularDistribution(0.3, 0.5, 0.7);
 		}else{
 			System.out.println("uDoughSaucingTime - invalid type "+size);
@@ -161,13 +161,13 @@ class RVPs
 		return(Tm);
 	}
 
-	protected double uPrimaryIngrTime(Size size){
+	protected double uPrimaryIngrTime(final int size){
 		double Tm = 0;
-		if(size == Size.LARGE){
+		if(size == Size.LARGE.getValue()){
 			Tm = triangularDistribution(0.6, 0.8, 1);
-		}else if(size == Size.MEDIUM){
+		}else if(size == Size.MEDIUM.getValue()){
 			Tm = triangularDistribution(0.5, 0.7, 0.9);
-		}else if(size == Size.SMALL){
+		}else if(size == Size.SMALL.getValue()){
 			Tm = triangularDistribution(0.4, 0.5, 0.6);
 		}else{
 			System.out.println("uPrimaryIngrTime - invalid type "+size);
@@ -175,13 +175,13 @@ class RVPs
 		return(Tm);
 	}
 
-	protected double uFinalIngrTime(Size size){
+	protected double uFinalIngrTime(final int size){
 		double Tm = 0;
-		if(size == Size.LARGE){
+		if(size == Size.LARGE.getValue()){
 			Tm = triangularDistribution(0.5, 0.6, 0.7);
-		}else if(size == Size.MEDIUM){
+		}else if(size == Size.MEDIUM.getValue()){
 			Tm = triangularDistribution(0.4, 0.5, 0.6);
-		}else if(size == Size.SMALL){
+		}else if(size == Size.SMALL.getValue()){
 			Tm = triangularDistribution(0.3, 0.4, 0.5);
 		}else{
 			System.out.println("uFinalIngrTime - invalid type "+size);

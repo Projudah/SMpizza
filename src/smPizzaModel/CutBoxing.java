@@ -25,7 +25,7 @@ public class CutBoxing extends ConditionalActivity{
 	
 	public double duration()
 	{
-		return model.rvp.BoxCuttingTime();
+		return model.rvp.uBoxCuttingTime();
 	}
 	
 	public void terminatingEvent(){

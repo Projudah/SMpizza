@@ -20,21 +20,4 @@ class DVPs
 	   return(nextTime);
 	}
 	------------------------------------------------------------*/
-
-	protected double GetTotalCost(int size, int tableNum, int drivers){
-		double baseCost = 0;
-
-		switch(size){
-			case 520: baseCost = 35000; break;
-			case 605: baseCost = 65000; break;
-			default: baseCost = 0;
-		}
-
-		double tableCost = tableNum * Constants.MAKETABLE_COST_PERHOUR;
-		double driverCost = drivers * Constants.DRIVER_COST_PERHOUR;
-
-		double sumCost = tableCost + driverCost + Constants.CUTANDBOX_COST_PERHOUR;
-
-		return baseCost + (sumCost) * Constants.HOURS_OPENED;
-	}
 }

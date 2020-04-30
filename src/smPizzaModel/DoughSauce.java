@@ -19,7 +19,7 @@ public class DoughSauce extends ConditionalActivity
 		Order iCOrder = model.qTechphone.get(0);
         iCPizza = new Pizza();
         iCPizza.associatedOrder = iCOrder;
-		iCPizza.size = model.rvp.SizeOfPizza();
+		iCPizza.size = model.rvp.uSizeOfPizza();
         model.rqMakeTable.numBusy++;
         iCOrder.uNumPizzasStarted++;
 		// System.out.println(Integer.toString(iCOrder.uNumPizzasStarted) +"/"+ Integer.toString(iCOrder.uNumPizzas));

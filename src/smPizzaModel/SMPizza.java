@@ -230,6 +230,7 @@ public class SMPizza extends AOSimulationModel
 			 System.out.println("Delivery q: "+qDeliveryArea.size());
 			System.out.println("CUTBOX "+qUnloadArea.size());
 			 System.out.println("Drivers out"+rgDeliveryDrivers.numBusy);
+			 System.out.println("Total Orders in: "+rvp.tot);
 			 System.out.println();
 			 showSBL();
 		}

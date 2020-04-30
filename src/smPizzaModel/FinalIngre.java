@@ -7,7 +7,7 @@ import simulationModelling.ConditionalActivity;
 public class FinalIngre extends ConditionalActivity {
 
     static SMPizza model;
-    Pizza iCPizza;
+
     protected static boolean precondition()
     {
        return model.udp.CanStartFinalIngre();
@@ -15,7 +15,6 @@ public class FinalIngre extends ConditionalActivity {
 
     @Override
     public void startingEvent() {
-        iCPizza = model.rqMakeTable.position[MakeTable.POS4];
         model.rqMakeTable.position[MakeTable.POS5] = model.rqMakeTable.position[MakeTable.POS4];
         model.rqMakeTable.position[MakeTable.POS4] = null;
         model.rqMakeTable.numBusy++;
@@ -24,12 +23,12 @@ public class FinalIngre extends ConditionalActivity {
 
     @Override
     protected double duration() {
-        return model.rvp.uFinalIngrTime(iCPizza.size);
+        return model.rvp.uFinalIngrTime(model.rqMakeTable.position[MakeTable.POS5].size);
     }
 
     @Override
     protected void terminatingEvent() {
-        model.qSlide.add(iCPizza);
+        model.qSlide.add(model.rqMakeTable.position[MakeTable.POS5]);
         model.rqMakeTable.position[MakeTable.POS5] = null;
         model.rqMakeTable.numBusy--;
     }

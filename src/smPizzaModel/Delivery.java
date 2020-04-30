@@ -19,6 +19,7 @@ public class Delivery extends ConditionalActivity {
 			model.rgDeliveryDrivers.numBusy++;
 			iCOrder = model.qDeliveryArea.remove(0);
 			deliveryTime = model.rvp.uDeliveryTime();
+			System.out.println("STaRTING DLEIVERYYYY "+model.rgDeliveryDrivers.numBusy);
 		}
 
 		protected double duration() 
