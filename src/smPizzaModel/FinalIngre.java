@@ -52,9 +52,9 @@ public class FinalIngre extends ConditionalActivity {
         }else if(size == Pizza.Size.SMALL.getValue()){
             Tm = triangularDistribution(0.3, 0.4, 0.5);
         }else{
-            System.out.println("uFinalIngrTime - invalid type "+size);
+            model.print("uFinalIngrTime - invalid type "+size);
         }
-        System.out.println("rvpuFinalIngrTime"+ Tm);
+        // model.print("rvpuFinalIngrTime: "+ Tm);
         return(Tm);
     }
 }

@@ -22,14 +22,14 @@ public class Delivery extends ConditionalActivity {
 		}
 
 		protected double duration() {
-			System.out.println("delivery duration"+ deliveryTime);
+			model.print("delivery duration"+ deliveryTime);
 			return deliveryTime;
 		}
 
 		protected void terminatingEvent() {
-			System.out.println("ENDING DLEIVERYYYY "+iCOrder.startTime);
-			System.out.println(model.getClock()-iCOrder.startTime);
-			System.out.println("____________________________________----Increasing num orders from "+model.output.numOrders);
+			model.print("ENDING DELIVERY "+iCOrder.startTime);
+			model.print(model.getClock()-iCOrder.startTime);
+			model.print("____________________________________----Increasing num orders from "+model.output.numOrders);
 			model.output.numOrders++;
 			if(model.getClock()-iCOrder.startTime <= Constants.DELIV_SATIS){
 				model.output.numOrdersSatisfied++;	 

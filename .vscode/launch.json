@@ -1,0 +1,245 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Experiment<Conveyor>",
+            "request": "launch",
+            "mainClass": "Experiment",
+            "projectName": "Conveyor"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ExperimentExhaustive<Conveyor>",
+            "request": "launch",
+            "mainClass": "ExperimentExhaustive",
+            "projectName": "Conveyor"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-InputDataModelling<Conveyor>",
+            "request": "launch",
+            "mainClass": "InputDataModelling",
+            "projectName": "Conveyor"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-LoggingExperiment<Conveyor>",
+            "request": "launch",
+            "mainClass": "LoggingExperiment",
+            "projectName": "Conveyor"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestExperiment<Conveyor>",
+            "request": "launch",
+            "mainClass": "TestExperiment",
+            "projectName": "Conveyor"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-KojoExperiment1<KojoKitchenVer1>",
+            "request": "launch",
+            "mainClass": "KojoExperiment1",
+            "projectName": "KojoKitchenVer1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-KojoExperiment2<KojoKitchenVer1>",
+            "request": "launch",
+            "mainClass": "KojoExperiment2",
+            "projectName": "KojoKitchenVer1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-KojoExperiment3<KojoKitchenVer1>",
+            "request": "launch",
+            "mainClass": "KojoExperiment3",
+            "projectName": "KojoKitchenVer1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PortV1Exp1<PortVer1>",
+            "request": "launch",
+            "mainClass": "PortV1Exp1",
+            "projectName": "PortVer1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PortV1Exp2<PortVer1>",
+            "request": "launch",
+            "mainClass": "PortV1Exp2",
+            "projectName": "PortVer1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PortV1Exp3<PortVer1>",
+            "request": "launch",
+            "mainClass": "PortV1Exp3",
+            "projectName": "PortVer1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PortV1Warm<PortVer1>",
+            "request": "launch",
+            "mainClass": "PortV1Warm",
+            "projectName": "PortVer1"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Experiment<Smpizza>",
+            "request": "launch",
+            "mainClass": "Experiment",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Version<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.colt.Version",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Benchmark<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.colt.map.Benchmark",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-BenchmarkMatrix<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.colt.matrix.bench.BenchmarkMatrix",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Statistic<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.colt.matrix.doublealgo.Statistic",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Benchmark<Smpizza>(1)",
+            "request": "launch",
+            "mainClass": "cern.colt.matrix.impl.Benchmark",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-BenchmarkMatrix2D<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.colt.matrix.impl.BenchmarkMatrix2D",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-NormInfinityTest<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.colt.matrix.impl.NormInfinityTest",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-QRTest<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.colt.matrix.impl.QRTest",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestMatrix2D<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.colt.matrix.impl.TestMatrix2D",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Benchmark<Smpizza>(2)",
+            "request": "launch",
+            "mainClass": "cern.jet.random.Benchmark",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Benchmark<Smpizza>(3)",
+            "request": "launch",
+            "mainClass": "cern.jet.random.engine.Benchmark",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-RandomSeedGenerator<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.jet.random.engine.RandomSeedGenerator",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-RandomSampler<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.jet.random.sampling.RandomSampler",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-RandomSamplingAssistant<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.jet.random.sampling.RandomSamplingAssistant",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Quantile1Test<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.jet.stat.quantile.Quantile1Test",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-QuantileCalc<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.jet.stat.quantile.QuantileCalc",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-QuantileFinderTest<Smpizza>",
+            "request": "launch",
+            "mainClass": "cern.jet.stat.quantile.QuantileFinderTest",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Format<Smpizza>",
+            "request": "launch",
+            "mainClass": "corejava.Format",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Test<Smpizza>",
+            "request": "launch",
+            "mainClass": "hep.aida.ref.Test",
+            "projectName": "Smpizza"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Test2<Smpizza>",
+            "request": "launch",
+            "mainClass": "hep.aida.ref.Test2",
+            "projectName": "Smpizza"
+        }
+    ]
+}

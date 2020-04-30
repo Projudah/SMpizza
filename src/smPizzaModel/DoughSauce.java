@@ -25,7 +25,7 @@ public class DoughSauce extends ConditionalActivity
 		iCPizza.size = rvpSizeOfPizza();
         model.rqMakeTable.numBusy++;
         iCOrder.uNumPizzasStarted++;
-		// System.out.println(Integer.toString(iCOrder.uNumPizzasStarted) +"/"+ Integer.toString(iCOrder.uNumPizzas));
+		// model.print(Integer.toString(iCOrder.uNumPizzasStarted) +"/"+ Integer.toString(iCOrder.uNumPizzas));
         if(iCOrder.uNumPizzasStarted >=iCOrder.uNumPizzas){
             model.qTechphone.remove(0);
 		}
@@ -83,7 +83,7 @@ public class DoughSauce extends ConditionalActivity
 		}else if(size == Pizza.Size.SMALL.getValue()){
 			Tm = RVPs.triangularDistribution(0.3, 0.5, 0.7);
 		}else{
-			System.out.println("uDoughSaucingTime - invalid type "+size);
+			model.print("uDoughSaucingTime - invalid type "+size);
 		}
 		return(Tm);
 	}
@@ -97,7 +97,7 @@ public class DoughSauce extends ConditionalActivity
 			case 1: size = Pizza.Size.MEDIUM; break;
 			case 2: size = Pizza.Size.LARGE; break;
 			default:
-				System.out.println("SizeOfPizza returned invalid value");
+				model.print("SizeOfPizza returned invalid value");
 				size = Pizza.Size.SMALL;
 		}
 		return(size.getValue());

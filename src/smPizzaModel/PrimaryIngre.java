@@ -19,7 +19,7 @@ public class PrimaryIngre extends ConditionalActivity {
         iCPizza = new Pizza();
         iCPizza = model.rqMakeTable.position[MakeTable.POS2];
         model.rqMakeTable.numBusy++;
-        System.out.println();
+        model.print();
         model.rqMakeTable.position[MakeTable.POS3] = model.rqMakeTable.position[MakeTable.POS2];
         model.rqMakeTable.position[MakeTable.POS2] = null;
         model.rqMakeTable.positionBusy[MakeTable.POS3] = true;
@@ -67,7 +67,7 @@ public class PrimaryIngre extends ConditionalActivity {
         }else if(size == Pizza.Size.SMALL.getValue()){
             Tm = triangularDistribution(0.4, 0.5, 0.6);
         }else{
-            System.out.println("uPrimaryIngrTime - invalid type "+size);
+            model.print("uPrimaryIngrTime - invalid type "+size);
         }
         return(Tm);
     }

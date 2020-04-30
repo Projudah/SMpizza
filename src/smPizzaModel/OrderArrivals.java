@@ -20,7 +20,7 @@ class OrderArrivals extends ScheduledAction
 		 iCOrder.uNumPizzasStarted = 0;
 		 iCOrder.uNumPizzasCompleted = 0;
 		 model.qTechphone.add(iCOrder);
-		//  System.out.println("Incomiung order "+iCOrder.uNumPizzas);
+		//  model.print("Incomiung order "+iCOrder.uNumPizzas);
 	}
 
 	// RVP
@@ -80,14 +80,14 @@ class OrderArrivals extends ScheduledAction
 		tot++;
 		if(peak_start_time <= model.getClock() && model.getClock() <= peak_start_time + p_length){
 			mean = pMEAN;
-			// System.out.println("ITS PEAK TIME");
+			// model.print("ITS PEAK TIME");
 		}else{
 			mean = oMEAN;
-			// System.out.println("NONO PEAK TIME");
+			// model.print("NONO PEAK TIME");
 		}
 
 		nxtArrival = model.getClock()+interArrDist.nextDouble(1.0/mean);
-		// System.out.println(tot+" NEXT ORDER IN "+ (nxtArrival - model.getClock()));
+		// model.print(tot+" NEXT ORDER IN "+ (nxtArrival - model.getClock()));
 		if(nxtArrival > model.closingTime)
 			nxtArrival = -1.0;  // Ends time sequence
 		return(nxtArrival);
@@ -100,7 +100,7 @@ class OrderArrivals extends ScheduledAction
 			case 0: type = Order.Type.DELIVERY; break;
 			case 1: type = Order.Type.CARRYOUT; break;
 			default:
-				System.out.println("uOrderType returned invalid value");
+				model.print("uOrderType returned invalid value");
 				type = Order.Type.DELIVERY;
 		}
 		return(type);
