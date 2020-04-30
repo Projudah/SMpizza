@@ -1,13 +1,19 @@
 package smPizzaModel;
 
+import cern.jet.random.Normal;
+import cern.jet.random.engine.MersenneTwister;
 import simulationModelling.ConditionalActivity;
 import smPizzaModel.Order.Type;
 
 public class CutBoxing extends ConditionalActivity{
 
 	static SMPizza model;
-	Pizza pizza;
+	Pizza iCPizza;
 	Order order;
+	/************  Implementation of User Modules ***********/
+	final static double BOXMEAN = 3.41;
+	final static double BOXSDEV = 1.07;
+	public static Normal boxingDist;
 	
 	public static boolean precondition()
 	{
@@ -17,17 +23,17 @@ public class CutBoxing extends ConditionalActivity{
 	public void startingEvent()
 	{
 		model.rCutBoxEmp.isBusy = true;
-	    this.pizza = model.qUnloadArea.remove(0);
-		this.order = this.pizza.associatedOrder;
+	    this.iCPizza = model.qUnloadArea.remove(0);
+		this.order = this.iCPizza.associatedOrder;
 		System.out.println(this.order.startTime+"___________________STARTING CUTBOX FOR "+(this.order.startTime));
 
 	}
 	
 	public double duration()
 	{
-		return model.rvp.uBoxCuttingTime();
+		return rvpBoxCuttingTime();
 	}
-	
+
 	public void terminatingEvent(){
 		System.out.println(this.order.startTime+"___________________ENDING CUTBOX "+(model.getClock() - this.order.startTime));
 		order.uNumPizzasCompleted++;
@@ -55,6 +61,15 @@ public class CutBoxing extends ConditionalActivity{
 
 		model.rCutBoxEmp.isBusy = false;
 	}
-	
-        
+	//	RVP
+	// Initialise the RVP
+	static void initRvps(Seeds sd) {
+		boxingDist = new Normal(BOXMEAN, BOXSDEV, new MersenneTwister(sd.cb));
+	}
+
+	protected double rvpBoxCuttingTime(){
+		double time = boxingDist.nextDouble();
+		System.out.println("____________________CUT AND BOX TIME "+time);
+		return time;
+	}
 }
