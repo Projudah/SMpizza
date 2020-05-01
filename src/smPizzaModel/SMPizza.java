@@ -71,7 +71,7 @@ public class SMPizza extends AOSimulationModel {
 		// rgCounter and qCustLine objects created in Initalise Action
 
 		// Initialise the simulation model
-		initAOSimulModel(t0time, tftime);
+		initAOSimulModel(t0time);
 
 		// Schedule the first arrivals and employee scheduling
 		Initialise init = new Initialise();
