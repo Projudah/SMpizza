@@ -42,14 +42,15 @@ public class CutBoxing extends ConditionalActivity {
 			if (this.order.uType == Type.DELIVERY) {
 				model.qDeliveryArea.add(this.order);
 			} else {
-				model.print(
-						"____________________________________----Increasing num orders from " + model.output.numOrders);
-				model.output.numOrders++;
+				model.print("____________________________________----Increasing num orders from "
+						+ model.output.ssovNumOrders);
+				model.output.ssovNumOrders++;
 				if ((model.getClock() - this.order.startTime) <= Constants.TAKE_OUT_SATIS) {
-					model.output.numOrdersSatisfied++;
+					model.output.ssovNumOrdersSatisfied++;
 				}
 
-				model.output.propOrdersSatisfied = (double) model.output.numOrdersSatisfied / model.output.numOrders;
+				model.output.ssovPropOrdersSatisfied = (double) model.output.ssovNumOrdersSatisfied
+						/ model.output.ssovNumOrders;
 			}
 		}
 

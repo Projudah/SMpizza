@@ -3,7 +3,7 @@ package smPizzaModel;
 import java.util.Arrays;
 
 import simulationModelling.ConditionalActivity;
-
+import dataModelling.TriangularVariate;
 import static smPizzaModel.RVPs.triangularDistribution;
 
 public class FinalIngre extends ConditionalActivity {
@@ -18,7 +18,7 @@ public class FinalIngre extends ConditionalActivity {
     @Override
     public void startingEvent() {
         model.rqMakeTable.position[MakeTable.POS5] = model.rqMakeTable.position[MakeTable.POS4];
-        model.rqMakeTable.position[MakeTable.POS4] = null;
+        model.rqMakeTable.position[MakeTable.POS4] = MakeTable.NO_PIZZA;
         model.rqMakeTable.numBusy++;
 
     }
@@ -31,15 +31,15 @@ public class FinalIngre extends ConditionalActivity {
     @Override
     protected void terminatingEvent() {
         model.qSlide.add(model.rqMakeTable.position[MakeTable.POS5]);
-        model.rqMakeTable.position[MakeTable.POS5] = null;
+        model.rqMakeTable.position[MakeTable.POS5] = MakeTable.NO_PIZZA;
         model.rqMakeTable.numBusy--;
     }
 
     //UDP
     protected static boolean udpCanStartFinalIngre(){
 		return ((model.rqMakeTable.numBusy <= model.rqMakeTable.numPersons) &&
-		(model.rqMakeTable.position[MakeTable.POS5] == null) &&
-		(model.rqMakeTable.position[MakeTable.POS4] != null));
+		(model.rqMakeTable.position[MakeTable.POS5] == MakeTable.NO_PIZZA) &&
+		(model.rqMakeTable.position[MakeTable.POS4] != MakeTable.NO_PIZZA));
 	}
     
     // RVP

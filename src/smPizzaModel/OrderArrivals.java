@@ -92,6 +92,7 @@ class OrderArrivals extends ScheduledAction
 			nxtArrival = -1.0;  // Ends time sequence
 		return(nxtArrival);
 	}
+
 	/* RVP for type of order*/
 	public Order.Type rvpuOrderType() {
 		Order.Type type;

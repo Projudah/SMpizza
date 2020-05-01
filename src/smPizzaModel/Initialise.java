@@ -24,22 +24,25 @@ class Initialise extends ScheduledAction{
 
 	@Override
 	public void actionEvent() {
-		
+		// Set all queue in model to zero (by making arrayList to clear all the items in them)
+		model.qTechphone.clear(); // empties the telephone queue
+		model.qSlide.clear(); // empties the slide queue
+		model.qDeliveryArea.clear();
+		model.qUnloadArea.clear();
 	   	// Set number of workers on makeTable to zero (initially no one is working)
 		model.rqMakeTable.numBusy = 0;
 		
 		// no pizzas in load area
 		model.rgLoadArea.usedSpace = 0;
 					    
-		for(int i= MakeTable.POS1 ; i <= MakeTable.POS5 ; i++)
+		for(int pos= MakeTable.POS1 ; pos <= MakeTable.POS5 ; pos++)
 	    {
-			 model.rqMakeTable.position[i] = null;
-			 model.rqMakeTable.positionBusy[i] = false;
+			 model.rqMakeTable.position[pos] = MakeTable.NO_PIZZA;
+			 model.rqMakeTable.positionBusy[pos] = false;
 	    }
 
-	    model.output.numOrders = 0;
-		model.output.numOrdersSatisfied = 0;
-
+	    model.output.ssovNumOrders = 0;
+		model.output.ssovNumOrdersSatisfied = 0;
 		model.rgDeliveryDrivers.numBusy = 0;
 		
 	}

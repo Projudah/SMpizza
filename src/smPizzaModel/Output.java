@@ -14,8 +14,7 @@ class Output
     // Sequences - add them here
 
     // SSOVs
-	protected int numOrders;
-	protected int numOrdersSatisfied;
-    protected double propOrdersSatisfied;
-    protected double totalCost;
+	protected int ssovNumOrders;
+	protected int ssovNumOrdersSatisfied;
+    protected double ssovPropOrdersSatisfied;
 }

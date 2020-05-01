@@ -9,19 +9,16 @@ import static smPizzaModel.RVPs.triangularDistribution;
 public class PrimaryIngre extends ConditionalActivity {
 
     static SMPizza model;
-    Pizza iCPizza;
+
     protected static boolean precondition() {
-       return udpCanStartPrimaryIngre();
+        return udpCanStartPrimaryIngre();
     }
 
     @Override
     public void startingEvent() {
-        iCPizza = new Pizza();
-        iCPizza = model.rqMakeTable.position[MakeTable.POS2];
         model.rqMakeTable.numBusy++;
-        model.print();
         model.rqMakeTable.position[MakeTable.POS3] = model.rqMakeTable.position[MakeTable.POS2];
-        model.rqMakeTable.position[MakeTable.POS2] = null;
+        model.rqMakeTable.position[MakeTable.POS2] = MakeTable.NO_PIZZA;
         model.rqMakeTable.positionBusy[MakeTable.POS3] = true;
     }
 
@@ -36,39 +33,37 @@ public class PrimaryIngre extends ConditionalActivity {
         model.rqMakeTable.numBusy--;
     }
 
-    
-    //UDP
-    //Throws Null pointer exception while using nested if
-    protected static boolean udpCanStartPrimaryIngre(){
-		if(model.rqMakeTable.position[MakeTable.POS3] != null){
-			return false;
-		}
-		if(FinalIngre.udpCanStartFinalIngre()){
-			return false;
-		}
-		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
-			return false;
-		}
-		if(model.rqMakeTable.position[MakeTable.POS2] == null){
-			return false;
-		}
-		return true;
-
-	}
-    
-    
-    // RVP
-    public double rvpuPrimaryIngrTime(int size){
-        double Tm = 0;
-        if(size == Pizza.Size.LARGE.getValue()){
-            Tm = triangularDistribution(0.6, 0.8, 1);
-        }else if(size == Pizza.Size.MEDIUM.getValue()){
-            Tm = triangularDistribution(0.5, 0.7, 0.9);
-        }else if(size == Pizza.Size.SMALL.getValue()){
-            Tm = triangularDistribution(0.4, 0.5, 0.6);
-        }else{
-            model.print("uPrimaryIngrTime - invalid type "+size);
+    // UDP
+    // Throws Null pointer exception while using nested if
+    protected static boolean udpCanStartPrimaryIngre() {
+        if (model.rqMakeTable.position[MakeTable.POS3] != MakeTable.NO_PIZZA) {
+            return false;
         }
-        return(Tm);
+        if (FinalIngre.udpCanStartFinalIngre()) {
+            return false;
+        }
+        if (model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons) {
+            return false;
+        }
+        if (model.rqMakeTable.position[MakeTable.POS2] == MakeTable.NO_PIZZA) {
+            return false;
+        }
+        return true;
+
+    }
+
+    // RVP
+    public double rvpuPrimaryIngrTime(int size) {
+        double Tm = 0;
+        if (size == Pizza.Size.LARGE.getValue()) {
+            Tm = triangularDistribution(0.6, 0.8, 1);
+        } else if (size == Pizza.Size.MEDIUM.getValue()) {
+            Tm = triangularDistribution(0.5, 0.7, 0.9);
+        } else if (size == Pizza.Size.SMALL.getValue()) {
+            Tm = triangularDistribution(0.4, 0.5, 0.6);
+        } else {
+            model.print("uPrimaryIngrTime - invalid type " + size);
+        }
+        return (Tm);
     }
 }

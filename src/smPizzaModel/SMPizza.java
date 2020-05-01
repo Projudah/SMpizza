@@ -218,9 +218,9 @@ public class SMPizza extends AOSimulationModel {
 			System.out.println("Pizzas at Unload area: " + qUnloadArea.size());
 			System.out.println("Pizzas at Delivery: " + qDeliveryArea.size());
 			System.out.println("Drivers out: " + rgDeliveryDrivers.numBusy + "/" + rgDeliveryDrivers.totalNumber);
-			System.out.println("numOrders completed: " + output.numOrders);
-			System.out.println("Orders Satisfied: " + output.numOrdersSatisfied);
-			System.out.println("Propnumsatisfied: " + output.propOrdersSatisfied);
+			System.out.println("numOrders completed: " + output.ssovNumOrders);
+			System.out.println("Orders Satisfied: " + output.ssovNumOrdersSatisfied);
+			System.out.println("Propnumsatisfied: " + output.ssovPropOrdersSatisfied);
 			showSBL();
 			System.out.println();
 		}

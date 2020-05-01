@@ -8,9 +8,9 @@ public class MovePizzaOutOfPOS1 extends ConditionalAction {
     public static boolean precondition()
     {
         boolean retVal = false;
-        if((model.rqMakeTable.position[MakeTable.POS2] == null ) &&
-                (model.rqMakeTable.position[MakeTable.POS1] != null ) && 
-                (model.rqMakeTable.positionBusy[MakeTable.POS1] == false)) {
+        if((model.rqMakeTable.position[MakeTable.POS2] == MakeTable.NO_PIZZA ) &&
+                (model.rqMakeTable.position[MakeTable.POS1] != MakeTable.NO_PIZZA ) &&
+                (!model.rqMakeTable.positionBusy[MakeTable.POS1])) {
             retVal = true;
         }
         return(retVal);
@@ -19,6 +19,6 @@ public class MovePizzaOutOfPOS1 extends ConditionalAction {
     @Override
     protected void actionEvent() {
         model.rqMakeTable.position[MakeTable.POS2] = model.rqMakeTable.position[MakeTable.POS1];
-        model.rqMakeTable.position[MakeTable.POS1] = null;
+        model.rqMakeTable.position[MakeTable.POS1] = MakeTable.NO_PIZZA;
     }
 }
