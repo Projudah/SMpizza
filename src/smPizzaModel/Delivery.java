@@ -29,12 +29,12 @@ public class Delivery extends ConditionalActivity {
 		protected void terminatingEvent() {
 			System.out.println("ENDING DLEIVERYYYY "+iCOrder.startTime);
 			System.out.println(model.getClock()-iCOrder.startTime);
-			System.out.println("____________________________________----Increasing num orders from "+model.output.numOrders);
-			model.output.numOrders++;
+			System.out.println("____________________________________----Increasing num orders from "+model.output.ssovNumOrders);
+			model.output.ssovNumOrders++;
 			if(model.getClock()-iCOrder.startTime <= Constants.DELIV_SATIS){
-				model.output.numOrdersSatisfied++;	 
+				model.output.ssovNumOrdersSatisfied++;
 		    }
-			model.output.propOrdersSatisfied = (double) model.output.numOrdersSatisfied/model.output.numOrders;
+			model.output.ssovPropOrdersSatisfied = (double) model.output.ssovNumOrdersSatisfied/model.output.ssovNumOrders;
 		    
 		    //startSequel
 		    ReturnShop returnAct = new ReturnShop(deliveryTime);

@@ -9,19 +9,16 @@ import static smPizzaModel.RVPs.triangularDistribution;
 public class PrimaryIngre extends ConditionalActivity {
 
     static SMPizza model;
-    Pizza iCPizza;
+
     protected static boolean precondition() {
        return udpCanStartPrimaryIngre();
     }
 
     @Override
     public void startingEvent() {
-        iCPizza = new Pizza();
-        iCPizza = model.rqMakeTable.position[MakeTable.POS2];
         model.rqMakeTable.numBusy++;
-        System.out.println();
         model.rqMakeTable.position[MakeTable.POS3] = model.rqMakeTable.position[MakeTable.POS2];
-        model.rqMakeTable.position[MakeTable.POS2] = null;
+        model.rqMakeTable.position[MakeTable.POS2] = MakeTable.NO_PIZZA;
         model.rqMakeTable.positionBusy[MakeTable.POS3] = true;
     }
 
@@ -40,7 +37,7 @@ public class PrimaryIngre extends ConditionalActivity {
     //UDP
     //Throws Null pointer exception while using nested if
     protected static boolean udpCanStartPrimaryIngre(){
-		if(model.rqMakeTable.position[MakeTable.POS3] != null){
+		if(model.rqMakeTable.position[MakeTable.POS3] != MakeTable.NO_PIZZA){
 			return false;
 		}
 		if(FinalIngre.udpCanStartFinalIngre()){
@@ -49,7 +46,7 @@ public class PrimaryIngre extends ConditionalActivity {
 		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
 			return false;
 		}
-		if(model.rqMakeTable.position[MakeTable.POS2] == null){
+		if(model.rqMakeTable.position[MakeTable.POS2] == MakeTable.NO_PIZZA){
 			return false;
 		}
 		return true;

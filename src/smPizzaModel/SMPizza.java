@@ -228,7 +228,7 @@ public class SMPizza extends AOSimulationModel
 		{
 			 System.out.println("Clock: "+getClock()+
 	                    ", Q.Techphone.n: "+qTechphone.size()+
-						", numOrders.n: "+output.numOrders+ ", satisf "+output.numOrdersSatisfied+ ", propnumsatisfied "+output.propOrdersSatisfied);
+						", numOrders.n: "+output.ssovNumOrders+ ", satisf "+output.ssovNumOrdersSatisfied+ ", propnumsatisfied "+output.ssovPropOrdersSatisfied);
 			System.out.println("Make Table Positions: "+Arrays.toString(rqMakeTable.position));
 			 System.out.println("Delivery q: "+qDeliveryArea.size());
 			System.out.println("CUTBOX "+qUnloadArea.size());
