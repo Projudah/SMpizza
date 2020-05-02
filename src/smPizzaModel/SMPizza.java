@@ -114,7 +114,9 @@ public class SMPizza extends AOSimulationModel {
 		// + getClock() + "RG.Counter.n = " + rgCounter.size());
 		if (getClock() >= closingTime && !scanPreconditions() && this.sbl.size() == 0) {
 			retVal = true;
-			System.out.println("implicit stop condition returns " + retVal);
+//			System.out.println("implicit stop condition returns " + retVal);
+//			System.out.println("Propnumsatisfied: " + output.ssovPropOrdersSatisfied);
+//			System.out.println("numOrders completed: " + output.ssovNumOrders);
 		}
 
 		return (retVal);

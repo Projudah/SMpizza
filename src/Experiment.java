@@ -21,9 +21,9 @@ class Experiment
        
        // Loop for NUMRUN simulation runs for each case
        // Case 1
-       System.out.println(" Case 1");
        for(i=0 ; i < NUMRUNS ; i++)
        {
+          System.out.println("\n Run "+(i+1));
           mname = new SMPizza(startTime, endTime, 3, 30, 605, sds[i], true);
           mname.runSimulation();
           // See examples for hints on collecting output
