@@ -54,7 +54,6 @@ public class FinalIngre extends ConditionalActivity {
         }else{
             model.print("uFinalIngrTime - invalid type "+size);
         }
-        // model.print("rvpuFinalIngrTime: "+ Tm);
         return(Tm);
     }
 }

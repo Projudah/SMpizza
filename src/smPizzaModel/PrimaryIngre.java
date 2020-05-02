@@ -34,22 +34,14 @@ public class PrimaryIngre extends ConditionalActivity {
     }
 
     // UDP
-    // Throws Null pointer exception while using nested if
     protected static boolean udpCanStartPrimaryIngre() {
-        if (model.rqMakeTable.position[MakeTable.POS3] != MakeTable.NO_PIZZA) {
-            return false;
-        }
-        if (FinalIngre.udpCanStartFinalIngre()) {
-            return false;
-        }
-        if (model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons) {
-            return false;
-        }
-        if (model.rqMakeTable.position[MakeTable.POS2] == MakeTable.NO_PIZZA) {
+        if ((model.rqMakeTable.position[MakeTable.POS3] != MakeTable.NO_PIZZA) ||
+            (FinalIngre.udpCanStartFinalIngre())||
+            (model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons) ||
+            (model.rqMakeTable.position[MakeTable.POS2] == MakeTable.NO_PIZZA)) {
             return false;
         }
         return true;
-
     }
 
     // RVP
