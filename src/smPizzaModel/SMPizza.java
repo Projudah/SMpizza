@@ -41,10 +41,8 @@ public class SMPizza extends AOSimulationModel {
 	// protected Techphone qTechphone = new Techphone();
 	protected ArrayList<Order> qTechphone = new ArrayList<Order>();
 
-	// References to RVP and DVP objects
+	// References to RVP objects
 	protected RVPs rvp; // Reference to rvp object - object created in constructor
-	protected DVPs dvp = new DVPs(); // Reference to dvp object
-	protected UDPs udp = new UDPs();
 
 	// Output object
 	protected Output output = new Output();
@@ -91,7 +89,6 @@ public class SMPizza extends AOSimulationModel {
 		CutBoxing.model = this;
 		Delivery.model = this;
 		DoughSauce.model = this;
-		DVPs.model = this;
 		FinalIngre.model = this;
 		Initialise.model = this;
 		Loading.model = this;
@@ -101,7 +98,6 @@ public class SMPizza extends AOSimulationModel {
 		PrimaryIngre.model = this;
 		ReturnShop.model = this;
 		RVPs.model = this;
-		UDPs.model = this;
 		OrderArrivals.initRvps(sd);
 		CutBoxing.initRvps(sd);
 		DoughSauce.initRvps(sd);

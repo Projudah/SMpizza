@@ -45,21 +45,14 @@ public class DoughSauce extends ConditionalActivity
 	}
 
 	//UDP
-	//Throws Null pointer exception while using nested if
 	protected static boolean udpCanStartDoughSaucing(){
-		if(model.rqMakeTable.position[MakeTable.POS1] != null){
+		if((model.rqMakeTable.position[MakeTable.POS1] != MakeTable.NO_PIZZA) ||
+				(PrimaryIngre.udpCanStartPrimaryIngre() || FinalIngre.udpCanStartFinalIngre()) ||
+				(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons) ||
+				(model.qTechphone.isEmpty())){
 			return false;
 		}
 
-		if(PrimaryIngre.udpCanStartPrimaryIngre() || FinalIngre.udpCanStartFinalIngre()){
-			return false;
-		}
-		if(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons){
-			return false;
-		}
-		if(model.qTechphone.isEmpty()) {
-			return false;
-		}
 		return true;
 		}
 	

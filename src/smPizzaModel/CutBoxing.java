@@ -9,7 +9,7 @@ public class CutBoxing extends ConditionalActivity {
 
 	static SMPizza model;
 	Pizza iCPizza;
-	Order order;
+	Order iCOrder;
 	/************ Implementation of User Modules ***********/
 	final static double BOXMEAN = 0.341;
 	final static double BOXSDEV = 0.107;
@@ -22,8 +22,8 @@ public class CutBoxing extends ConditionalActivity {
 	public void startingEvent() {
 		model.rCutBoxEmp.isBusy = true;
 		this.iCPizza = model.qUnloadArea.remove(0);
-		this.order = this.iCPizza.associatedOrder;
-		model.print("___________________STARTING CUTBOX FOR " + (this.order.startTime));
+		this.iCOrder = this.iCPizza.associatedOrder;
+		model.print("___________________STARTING CUTBOX FOR " + (this.iCOrder.startTime));
 
 	}
 
@@ -32,20 +32,20 @@ public class CutBoxing extends ConditionalActivity {
 	}
 
 	public void terminatingEvent() {
-		model.print("___________________ENDING CUTBOX FOR " + (this.order.startTime));
-		order.uNumPizzasCompleted++;
+		model.print("___________________ENDING CUTBOX FOR " + (this.iCOrder.startTime));
+		iCOrder.uNumPizzasCompleted++;
 		// this.pizza.spleave(); don't need to have any SP
-		model.print((this.order.startTime) + " Order completion: " + Integer.toString(order.uNumPizzasCompleted) + "/"
-				+ Integer.toString(order.uNumPizzas));
-		if (order.uNumPizzasCompleted >= order.uNumPizzas) {
-			model.print(this.order.uType + "-----------------------------------------" + this.order.startTime);
-			if (this.order.uType == Type.DELIVERY) {
-				model.qDeliveryArea.add(this.order);
+		model.print((this.iCOrder.startTime) + " Order completion: " + Integer.toString(iCOrder.uNumPizzasCompleted) + "/"
+				+ Integer.toString(iCOrder.uNumPizzas));
+		if (iCOrder.uNumPizzasCompleted >= iCOrder.uNumPizzas) {
+			model.print(this.iCOrder.uType + "-----------------------------------------" + this.iCOrder.startTime);
+			if (this.iCOrder.uType == Type.DELIVERY) {
+				model.qDeliveryArea.add(this.iCOrder);
 			} else {
-				model.print("____________________________________----Increasing num orders from "
+				model.print("____________________________________----Increasing num iCOrders from "
 						+ model.output.ssovNumOrders);
 				model.output.ssovNumOrders++;
-				if ((model.getClock() - this.order.startTime) <= Constants.TAKE_OUT_SATIS) {
+				if ((model.getClock() - this.iCOrder.startTime) <= Constants.TAKE_OUT_SATIS) {
 					model.output.ssovNumOrdersSatisfied++;
 				}
 
