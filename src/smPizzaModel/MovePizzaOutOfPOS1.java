@@ -5,15 +5,14 @@ import simulationModelling.ConditionalAction;
 public class MovePizzaOutOfPOS1 extends ConditionalAction {
     static SMPizza model;
 
-    public static boolean precondition()
-    {
+    public static boolean precondition() {
         boolean retVal = false;
-        if((model.rqMakeTable.position[MakeTable.POS2] == MakeTable.NO_PIZZA ) &&
-                (model.rqMakeTable.position[MakeTable.POS1] != MakeTable.NO_PIZZA ) &&
-                (!model.rqMakeTable.positionBusy[MakeTable.POS1])) {
+        if ((model.rqMakeTable.position[MakeTable.POS2] == MakeTable.NO_PIZZA)
+                && (model.rqMakeTable.position[MakeTable.POS1] != MakeTable.NO_PIZZA)
+                && (!model.rqMakeTable.doughSaucing)) {
             retVal = true;
         }
-        return(retVal);
+        return (retVal);
     }
 
     @Override

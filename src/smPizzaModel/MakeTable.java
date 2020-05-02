@@ -12,5 +12,6 @@ public class MakeTable {
 	protected int numBusy;
 	protected int numPersons;
 	protected Pizza[] position = new Pizza[5];
-	protected boolean[] positionBusy = new boolean[5];
+	protected boolean doughSaucing;
+	protected boolean addingPrimIngr;
 }
