@@ -19,7 +19,7 @@ public class PrimaryIngre extends ConditionalActivity {
         model.rqMakeTable.numBusy++;
         model.rqMakeTable.position[MakeTable.POS3] = model.rqMakeTable.position[MakeTable.POS2];
         model.rqMakeTable.position[MakeTable.POS2] = MakeTable.NO_PIZZA;
-        model.rqMakeTable.positionBusy[MakeTable.POS3] = true;
+        model.rqMakeTable.addingPrimIngr = true;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class PrimaryIngre extends ConditionalActivity {
 
     @Override
     protected void terminatingEvent() {
-        model.rqMakeTable.positionBusy[MakeTable.POS3] = false;
+        model.rqMakeTable.addingPrimIngr = false;
         model.rqMakeTable.numBusy--;
     }
 
