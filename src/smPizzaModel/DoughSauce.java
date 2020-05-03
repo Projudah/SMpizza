@@ -41,7 +41,7 @@ public class DoughSauce extends ConditionalActivity {
 	}
 
 	// UDP
-	// Throws Null pointer exception while using nested if
+	// TODO: complete this before commit
 	protected static boolean udpCanStartDoughSaucing() {
 		if (model.rqMakeTable.position[MakeTable.POS1] != MakeTable.NO_PIZZA) {
 			return false;

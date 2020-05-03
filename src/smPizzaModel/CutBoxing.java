@@ -53,7 +53,6 @@ public class CutBoxing extends ConditionalActivity {
 						/ model.output.ssovNumOrders;
 			}
 		}
-
 		model.rCutBoxEmp.isBusy = false;
 	}
 

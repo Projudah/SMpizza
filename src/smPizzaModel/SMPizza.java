@@ -222,7 +222,10 @@ public class SMPizza extends AOSimulationModel {
 			showSBL();
 			System.out.println();
 		}
-		//
+	}
+
+	public double getCustomerSatisfaction() {
+		return output.ssovPropOrdersSatisfied;
 	}
 
 	public void print(Object text) {

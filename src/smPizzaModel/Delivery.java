@@ -35,8 +35,7 @@ public class Delivery extends ConditionalActivity {
 		if (model.getClock() - iCOrder.startTime <= Constants.DELIV_SATIS) {
 			model.output.ssovNumOrdersSatisfied++;
 		}
-		model.output.ssovPropOrdersSatisfied = (double) model.output.ssovNumOrdersSatisfied
-				/ model.output.ssovNumOrders;
+		model.output.ssovPropOrdersSatisfied = (double) model.output.ssovNumOrdersSatisfied / model.output.ssovNumOrders;
 
 		// startSequel
 		ReturnShop returnAct = new ReturnShop(deliveryTime);
