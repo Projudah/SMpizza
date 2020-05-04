@@ -28,7 +28,7 @@ public class CutBoxing extends ConditionalActivity {
 	}
 
 	public double duration() {
-		return rvpBoxCuttingTime();
+		return rvpuBoxCuttingTime();
 	}
 
 	public void terminatingEvent() {
@@ -62,7 +62,7 @@ public class CutBoxing extends ConditionalActivity {
 		boxingDist = new Normal(BOXMEAN, BOXSDEV, new MersenneTwister(sd.cb));
 	}
 
-	protected double rvpBoxCuttingTime() {
+	protected double rvpuBoxCuttingTime() {
 		double time = boxingDist.nextDouble();
 		model.print("____________________CUT AND BOX TIME " + time);
 		return time;

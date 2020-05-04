@@ -42,15 +42,15 @@ public class Experiment4 {
             valuesCase2[i] = model.getCustomerSatisfaction();
         }
 
-        displayTable(valuesCase1,"1B");
-        displayTable(valuesCase2,"1C");
+        displayTable(valuesCase1,"1");
+        displayTable(valuesCase2,"2");
     }
 
     /*------------ Display the confidence intervals for various number of simulations --------------*/
     private static void displayTable(double [] allValues, String caseNum)
     {
         System.out.printf("------------------------------------------------------------------\n");
-        System.out.printf("                             Step%s\n", caseNum);
+        System.out.printf("                             Case%s\n", caseNum);
         System.out.printf("------------------------------------------------------------------\n");
         System.out.printf("n        y(n)     s(n)     zeta(n)  CI Min   CI Max   zeta(n)/y(n)\n");
         System.out.printf("------------------------------------------------------------------\n");
