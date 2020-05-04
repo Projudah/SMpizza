@@ -29,11 +29,9 @@ class Experiment
        for(i=0 ; i < NUMRUNS ; i++)
        {
           System.out.println("\n Run "+(i+1));
-          mname = new SMPizza(startTime, endTime, 2, 3, 435, sds[i], false);
+          mname = new SMPizza(startTime, endTime, 2, 3, 435, sds[i], true);
           mname.runSimulation();
           customerSatisfactionValues[i] = mname.getCustomerSatisfaction();
-          // See examples for hints on collecting output
-          // and developping code for analysis
        }
 
        cfInterval = new ConfidenceInterval(customerSatisfactionValues, CONF_LEVEL);

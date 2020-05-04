@@ -52,7 +52,6 @@ public class ValidationTesting {
             }
 
             // Set first position of parameter list to NUMMAKETABLEMPLOYEE
-//            parameterList[0] = NUMMAKETABLEMPLOYEE;
 
             System.out.println();
             System.out.println("How many drivers should there be? (1 - 10) : ");
@@ -65,7 +64,6 @@ public class ValidationTesting {
             }
 
             // Set second position of parameter list to NUMDRIVERS
-//            parameterList[1] = NUMDRIVERS;
 
             System.out.println();
             System.out.println("What size should the oven be? (435, 520, or 605)");
@@ -78,7 +76,6 @@ public class ValidationTesting {
             }
 
             // Set third position of parameter list to OVENSIZE
-//            parameterList[2] = OVENSIZE;
 
             allRight = true;
         }

@@ -5,31 +5,31 @@ import smPizzaModel.Seeds;
 
 public class Experiment2 {
     public static void main(String[] args) {
-        //case 1
-        System.out.println("CASE 1A: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 3 DRIVERS");
+        //step 1
+        System.out.println("Step 1A: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 4 DRIVERS");
+        experiment(3,4,605);
+        System.out.println("Step 1B: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 3 DRIVERS");
         experiment(3,3,605);
-        System.out.println("\nCASE 1B: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 2 DRIVERS");
+        System.out.println("\nStep 1C: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 2 DRIVERS");
         experiment(3,2,605);
-        System.out.println("\nCASE 1C: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 1 DRIVER");
+        System.out.println("\nStep 1D: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 1 DRIVERS");
         experiment(3,1,605);
         System.out.println("\nThe number of drivers allowing for the lowest customer satisfaction above 90% is 2. "
                 + "\nThis value will be used for all subsequent cases.");
-        //case 2
-        System.out.println("\nCASE 2A: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 2 DRIVERS");
-        experiment(3,2,605);
-        System.out.println("\nCASE 2B: 3 MAKE-TABLE EMPLOYEES, 520 IN2 OVEN AND 2 DRIVERS");
-        experiment(3,2,520);
-        System.out.println("\nCASE 2C: 3 MAKE-TABLE EMPLOYEES, 435 IN2 OVEN AND 2 DRIVERS");
-        experiment(3,2,435);
+        //Step 2
+        System.out.println("\nStep 2A: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 3 DRIVERS");
+        experiment(3,3,605);
+        System.out.println("\nStep 2B: 3 MAKE-TABLE EMPLOYEES, 520 IN2 OVEN AND 3 DRIVERS");
+        experiment(3,3,520);
+        System.out.println("\nStep 2C: 3 MAKE-TABLE EMPLOYEES, 435 IN2 OVEN AND 3 DRIVERS");
+        experiment(3,3,435);
         System.out.println("\nThe oven size allowing for the lowest customer satisfaction above 90% is 605. "
                 + "\nThis value will be used for all subsequent cases.");
-        //case 3
-        System.out.println("\nCASE 3A: 3 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 2 DRIVERS");
-        experiment(3,2,605);
-        System.out.println("\nCASE 3B: 2 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 2 DRIVERS");
-        experiment(2,2,605);
-        System.out.println("\nCASE 3C: 1 MAKE-TABLE EMPLOYEES, 605 IN2 OVEN AND 2 DRIVERS");
-        experiment(1,2,605);
+        //Step 3
+        System.out.println("\nStep 3B: 2 MAKE-TABLE EMPLOYEES, 435 IN2 OVEN AND 3 DRIVERS");
+        experiment(2,3,435);
+        System.out.println("\nStep 3C: 1 MAKE-TABLE EMPLOYEES, 435 IN2 OVEN AND 3 DRIVERS");
+        experiment(1,3,435);
         System.out.println("\nThe number of make-table employees allowing for the lowest customer satisfaction above 90% is 1.");
     }
 
@@ -38,7 +38,7 @@ public class Experiment2 {
         final int NUMDRIVERS = numDrivers;
         final int SIZEOFOVEN = sizeOven;
 
-        final int NUMRUNS = 20; // Number of runs
+        final int NUMRUNS = 40; // Number of runs
         final double CONF_LEVEL = 0.9;  // Confidence levels
 
         final boolean logging = false; // Do not display logging data
@@ -78,23 +78,18 @@ public class Experiment2 {
 
         // Confidence intervals
         System.out.print("------------------------\n");
-
         // Point Estimates
-        System.out.printf("     PE | CS: %8.3f", cfInterval.getPointEstimate());
-
+        System.out.printf("     PE  %8.3f\n", cfInterval.getPointEstimate());
         // Standard Deviations
-        System.out.printf("\n   S(n) | CS: %8.3f", cfInterval.getStdDev());
-
+        System.out.printf("   S(n)  %8.3f\n", cfInterval.getStdDev());
         // Confidence Half-Interval
-        System.out.printf("\n   zeta | CS: %8.3f ", cfInterval.getZeta());
-
+        System.out.printf("   zeta  %8.3f\n", cfInterval.getZeta());
         // Minimum Value in Confidence Interval
-        System.out.printf("\n CI Min | CS:  %8.3f", cfInterval.getCfMin());
-
+        System.out.printf(" CI Min  %8.3f\n", cfInterval.getCfMin());
         // Maximum Value in Confidence Interval
-        System.out.printf("\n CI Max | CS: %8.3f", cfInterval.getCfMax());
-
-        // r
-        System.out.printf("\n zeta/PE | CS: %8.3f", cfInterval.getZeta()/cfInterval.getPointEstimate());
+        System.out.printf(" CI Max  %8.3f\n", cfInterval.getCfMax());
+        // ratio of Confidence Half-Interval to Point Estimates
+        System.out.printf("zeta/PE  %8.3f\n",  cfInterval.getZeta()/cfInterval.getPointEstimate());
+        System.out.print("------------------------\n");
     }
 }

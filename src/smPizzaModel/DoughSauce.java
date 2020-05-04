@@ -41,19 +41,11 @@ public class DoughSauce extends ConditionalActivity {
 	}
 
 	// UDP
-	// TODO: complete this before commit
 	protected static boolean udpCanStartDoughSaucing() {
-		if (model.rqMakeTable.position[MakeTable.POS1] != MakeTable.NO_PIZZA) {
-			return false;
-		}
-
-		if (PrimaryIngre.udpCanStartPrimaryIngre() || FinalIngre.udpCanStartFinalIngre()) {
-			return false;
-		}
-		if (model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons) {
-			return false;
-		}
-		if (model.qTechphone.isEmpty()) {
+		if ((model.rqMakeTable.position[MakeTable.POS1] != MakeTable.NO_PIZZA) ||
+			(PrimaryIngre.udpCanStartPrimaryIngre() || FinalIngre.udpCanStartFinalIngre()) ||
+			(model.rqMakeTable.numBusy >= model.rqMakeTable.numPersons)	||
+			(model.qTechphone.isEmpty())) {
 			return false;
 		}
 		return true;
